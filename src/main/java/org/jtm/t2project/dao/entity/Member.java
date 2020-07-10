@@ -7,16 +7,19 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Members")
 public class Member {
-    @Id
-    private Integer id;
 
-    @OneToOne
-    private BookIssue bookIssue;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     private String name;
     private String role;
     private Integer bookLimit;
     private Double fine;
+
+    @OneToOne
+    @JoinColumn(name = "Book_issue_id")
+    private BookIssue bookIssue;
 
     public Integer getId() {
         return id;
