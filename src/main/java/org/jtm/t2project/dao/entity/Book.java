@@ -8,8 +8,8 @@ import java.util.Set;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private Integer isbn;
     private String title;
@@ -33,15 +33,18 @@ public class Book {
     )
     private Set <Author> bookAuthors;
 
-    @ManyToOne
-    @JoinColumn(name = "Book_issue_id")
-    private BookIssue bookIssue;
+//    @ManyToOne
+//    @JoinColumn(name = "Book_issue_id")
+//    private BookIssue bookIssue;
 
-    public Integer getId() {
+    public Book() {
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -101,11 +104,11 @@ public class Book {
         this.bookAuthors = bookAuthors;
     }
 
-    public BookIssue getBookIssue() {
-        return bookIssue;
-    }
-
-    public void setBookIssue(BookIssue bookIssue) {
-        this.bookIssue = bookIssue;
-    }
+//    public BookIssue getBookIssue() {
+//        return bookIssue;
+//    }
+//
+//    public void setBookIssue(BookIssue bookIssue) {
+//        this.bookIssue = bookIssue;
+//    }
 }

@@ -9,27 +9,30 @@ import java.util.Set;
 public class BookIssue {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private Date issue;
     private Date toReturn;
     private Date returned;
     private Double fine;
 
-    @OneToMany(
-            mappedBy = "Book_issue_id")
-    private Set <Book> issuedBooks;
+//    @OneToMany(
+//            mappedBy = "Book_issue_id")
+//    private Set <Book> issuedBooks;
 
-    @OneToOne(
-            mappedBy = "Book_issue_id")
-    private Member borrower;
+//    @OneToOne(
+//            mappedBy = "Book_issue_id")
+//    private Member borrower;
 
-    public Integer getId() {
+    public BookIssue() {
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -65,19 +68,19 @@ public class BookIssue {
         this.fine = fine;
     }
 
-    public Set <Book> getIssuedBooks() {
-        return issuedBooks;
-    }
+//    public Set <Book> getIssuedBooks() {
+//        return issuedBooks;
+//    }
+//
+//    public void setIssuedBooks(Set <Book> issuedBooks) {
+//        this.issuedBooks = issuedBooks;
+//    }
 
-    public void setIssuedBooks(Set <Book> issuedBooks) {
-        this.issuedBooks = issuedBooks;
-    }
-
-    public Member getBorrower() {
-        return borrower;
-    }
-
-    public void setBorrower(Member borrower) {
-        this.borrower = borrower;
-    }
+//    public Member getBorrower() {
+//        return borrower;
+//    }
+//
+//    public void setBorrower(Member borrower) {
+//        this.borrower = borrower;
+//    }
 }

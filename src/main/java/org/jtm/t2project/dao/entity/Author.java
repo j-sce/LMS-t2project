@@ -8,10 +8,13 @@ import java.util.Set;
 public class Author {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
+
+    public Author() {
+    }
 
     public Author(String name) {
         this.name = name;
@@ -28,11 +31,11 @@ public class Author {
         this.name = name;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

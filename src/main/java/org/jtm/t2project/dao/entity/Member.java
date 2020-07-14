@@ -9,34 +9,37 @@ import javax.persistence.*;
 public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
     private String role;
     private Integer bookLimit;
     private Double fine;
 
-    @OneToOne
-    @JoinColumn(name = "Book_issue_id")
-    private BookIssue bookIssue;
+//    @OneToOne
+//    @JoinColumn(name = "Book_issue_id")
+//    private BookIssue bookIssue;
 
-    public Integer getId() {
+    public Member() {
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public BookIssue getBookIssue() {
-        return bookIssue;
-    }
+//    public BookIssue getBookIssue() {
+//        return bookIssue;
+//    }
 
-    public void setBookIssue(BookIssue bookIssue) {
-        this.bookIssue = bookIssue;
-//        bookIssue.addMember(this);
-    }
+//    public void setBookIssue(BookIssue bookIssue) {
+//        this.bookIssue = bookIssue;
+////        bookIssue.addMember(this);
+//    }
 
     public String getName() {
         return name;
