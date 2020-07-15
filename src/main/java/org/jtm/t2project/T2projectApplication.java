@@ -13,7 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @SpringBootApplication
-@ComponentScan
+
 public class T2projectApplication {
 
 	public static void main(String[] args) {
