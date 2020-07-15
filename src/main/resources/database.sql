@@ -71,15 +71,14 @@ DROP TABLE IF EXISTS `Book_Authors_Map`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Book_Authors_Map` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `bookId` int unsigned NOT NULL,
   `authorId` int unsigned NOT NULL,
-  PRIMARY KEY (`id`),
+  primary key (`bookId`,`authorId`),
   KEY `FK_Book_Authors_Map_1` (`authorId`),
   KEY `FK_Book_Authors_Map_2` (`bookId`),
   CONSTRAINT `FK_Book_Authors_Map_1` FOREIGN KEY (`authorId`) REFERENCES `Authors` (`id`),
   CONSTRAINT `FK_Book_Authors_Map_2` FOREIGN KEY (`bookId`) REFERENCES `Books` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,7 +87,7 @@ CREATE TABLE `Book_Authors_Map` (
 
 LOCK TABLES `Book_Authors_Map` WRITE;
 /*!40000 ALTER TABLE `Book_Authors_Map` DISABLE KEYS */;
-INSERT INTO `Book_Authors_Map` VALUES (1,1,1),(2,2,5),(3,3,4);
+INSERT INTO `Book_Authors_Map` VALUES (1,1),(2,5),(3,4);
 /*!40000 ALTER TABLE `Book_Authors_Map` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,15 +123,14 @@ DROP TABLE IF EXISTS `Book_Subject_Map`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Book_Subject_Map` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `bookId` int unsigned NOT NULL,
   `subjectId` int unsigned NOT NULL,
-  PRIMARY KEY (`id`),
+  primary key (`bookId`,`subjectId`),
   KEY `FK_Book_Subject_Map_1` (`bookId`),
   KEY `FK_Book_Subject_Map_2` (`subjectId`),
   CONSTRAINT `FK_Book_Subject_Map_1` FOREIGN KEY (`bookId`) REFERENCES `Books` (`id`),
   CONSTRAINT `FK_Book_Subject_Map_2` FOREIGN KEY (`subjectId`) REFERENCES `Subject` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,7 +139,7 @@ CREATE TABLE `Book_Subject_Map` (
 
 LOCK TABLES `Book_Subject_Map` WRITE;
 /*!40000 ALTER TABLE `Book_Subject_Map` DISABLE KEYS */;
-INSERT INTO `Book_Subject_Map` VALUES (1,1,7),(2,2,3),(3,3,6),(4,2,3);
+INSERT INTO `Book_Subject_Map` VALUES (1,7),(2,3),(3,6),(2,1);
 /*!40000 ALTER TABLE `Book_Subject_Map` ENABLE KEYS */;
 UNLOCK TABLES;
 --
