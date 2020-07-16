@@ -14,14 +14,12 @@ public class Author {
     private String name;
 
     public Author() {
+        super();
     }
 
     public Author(String name) {
         this.name = name;
     }
-
-    @ManyToMany(mappedBy = "bookAuthors")
-    private Set <Book> authorsBooks;
 
     public String getName() {
         return name;
@@ -37,14 +35,6 @@ public class Author {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Set <Book> getAuthorsBooks() {
-        return authorsBooks;
-    }
-
-    public void setAuthorsBooks(Set <Book> authorsBooks) {
-        this.authorsBooks = authorsBooks;
     }
 
     public String toString() {

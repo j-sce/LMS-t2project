@@ -9,18 +9,16 @@ public class Subject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
-    private String name;
+    String name;
 
     public Subject(String name) {
         this.name = name;
     }
 
-    @ManyToMany(mappedBy = "bookSubjects")
-    private Set <Book> booksOfSubject;
-
     public Subject() {
+        super();
     }
 
     public String getName() {
@@ -37,14 +35,6 @@ public class Subject {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Set <Book> getBooksOfSubject() {
-        return booksOfSubject;
-    }
-
-    public void setBooksofsubject(Set <Book> booksofsubject) {
-        this.booksOfSubject = booksofsubject;
     }
 
     public String toString() {
