@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 public class T2projectApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(T2projectApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(T2projectApplication.class, args);
+    }
 
 }

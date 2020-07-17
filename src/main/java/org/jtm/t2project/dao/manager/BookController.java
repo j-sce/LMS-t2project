@@ -31,7 +31,7 @@ public class BookController {
 
     @RequestMapping(value = "/insertBook", method = RequestMethod.GET)
     public String getInsertBook(HttpServletRequest request,
-                                 HttpServletResponse response, ModelMap model) {
+                                HttpServletResponse response, ModelMap model) {
 
         // Create Class Entity
         Book book = new Book();
@@ -43,7 +43,7 @@ public class BookController {
 
     @RequestMapping(value = "/insertBook", method = RequestMethod.POST)
     public String insertBook(@ModelAttribute("book") Book book, HttpServletRequest request,
-                              HttpServletResponse response, ModelMap model) {
+                             HttpServletResponse response, ModelMap model) {
 
         try {
             book = bookManager.insertBook(book);

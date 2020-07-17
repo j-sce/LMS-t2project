@@ -23,7 +23,7 @@ public class BookManager {
 //        return authorRepository.save(murakami);
 //    }
 
-    public Book insertBook (Book book){
+    public Book insertBook(Book book) {
         return bookRepository.save(book);
     }
 
