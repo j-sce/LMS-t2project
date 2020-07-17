@@ -3,6 +3,7 @@ package org.jtm.t2project.dao.entity;
 import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
