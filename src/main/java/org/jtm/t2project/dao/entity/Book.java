@@ -1,6 +1,10 @@
 package org.jtm.t2project.dao.entity;
 
+import org.springframework.context.annotation.Lazy;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -8,40 +12,49 @@ import java.util.Set;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
-    private Integer isbn;
-    private String title;
-    private String publisher;
-    private Integer year;
-    private Boolean available;
+    Integer isbn;
+    String title;
+    String publisher;
+    Integer year;
+    Boolean available;
 
-    @ManyToMany
-    @JoinTable(
-            name = "book_subject_map",
-            joinColumns = @JoinColumn(name = "bookId"),
-            inverseJoinColumns = @JoinColumn(name = "subjectId")
-    )
-    private Set <Subject> bookSubjects;
+//    @OneToMany
+//    @JoinTable(
+//            name = "Book_Subject_Map",
+//            joinColumns = {
+//                    @JoinColumn(name = "bookId", referencedColumnName = "id")},
+//            inverseJoinColumns = {
+//                    @JoinColumn(name = "subjectId", referencedColumnName = "id")}
+//    )
+//    @Lazy
+//    List <Subject> bookSubjects = new ArrayList <>();
+//
+//    @OneToMany
+//    @JoinTable(
+//            name = "Book_Authors_Map",
+//            joinColumns = {
+//                    @JoinColumn(name = "bookId", referencedColumnName = "id")},
+//            inverseJoinColumns = {
+//                    @JoinColumn(name = "authorId", referencedColumnName = "id")}
+//    )
+//    @Lazy
+//    List <Author> bookAuthors = new ArrayList <>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "Book_Authors_Map",
-            joinColumns = @JoinColumn(name = "bookId"),
-            inverseJoinColumns = @JoinColumn(name = "authorId")
-    )
-    private Set <Author> bookAuthors;
+//    @ManyToOne
+//    @JoinColumn(name = "Book_issue_id")
+//    private BookIssue bookIssue;
 
-    @ManyToOne
-    @JoinColumn(name = "Book_issue_id")
-    private BookIssue bookIssue;
+    public Book() {
+    }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -85,27 +98,27 @@ public class Book {
         this.available = available;
     }
 
-    public Set <Subject> getBookSubjects() {
-        return bookSubjects;
-    }
+//    public List <Subject> getBookSubjects() {
+//        return bookSubjects;
+//    }
+//
+//    public void setBookSubjects(List <Subject> bookSubjects) {
+//        this.bookSubjects = bookSubjects;
+//    }
+//
+//    public List <Author> getBookAuthors() {
+//        return bookAuthors;
+//    }
+//
+//    public void setBookAuthors(List <Author> bookAuthors) {
+//        this.bookAuthors = bookAuthors;
+//    }
 
-    public void setBookSubjects(Set <Subject> bookSubjects) {
-        this.bookSubjects = bookSubjects;
-    }
-
-    public Set <Author> getBookAuthors() {
-        return bookAuthors;
-    }
-
-    public void setBookAuthors(Set <Author> bookAuthors) {
-        this.bookAuthors = bookAuthors;
-    }
-
-    public BookIssue getBookIssue() {
-        return bookIssue;
-    }
-
-    public void setBookIssue(BookIssue bookIssue) {
-        this.bookIssue = bookIssue;
-    }
+//    public BookIssue getBookIssue() {
+//        return bookIssue;
+//    }
+//
+//    public void setBookIssue(BookIssue bookIssue) {
+//        this.bookIssue = bookIssue;
+//    }
 }

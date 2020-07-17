@@ -8,17 +8,18 @@ import java.util.Set;
 public class Subject {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
-    private String name;
+    String name;
 
     public Subject(String name) {
         this.name = name;
     }
 
-    @ManyToMany(mappedBy = "bookSubjects")
-    private Set <Book> booksOfSubject;
+    public Subject() {
+        super();
+    }
 
     public String getName() {
         return name;
@@ -28,20 +29,12 @@ public class Subject {
         this.name = name;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public Set <Book> getBooksOfSubject() {
-        return booksOfSubject;
-    }
-
-    public void setBooksofsubject(Set <Book> booksofsubject) {
-        this.booksOfSubject = booksofsubject;
     }
 
     public String toString() {

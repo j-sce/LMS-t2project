@@ -13,7 +13,7 @@ import javax.persistence.Persistence;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Controller
+//@Controller
 public class LibraryController {
 
 //    @RequestMapping(value = "/", method = RequestMethod.GET)
