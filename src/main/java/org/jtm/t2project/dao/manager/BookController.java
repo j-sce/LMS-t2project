@@ -50,7 +50,7 @@ public class BookController {
             model.addAttribute("message", "Book - "
                     + book.getTitle() + " Was added to DB, id: " + book.getId());
         } catch (Exception exception) {
-            model.addAttribute("errorMessage", "Error occur: not unique ID");
+            model.addAttribute("errorMessage", "Error occured!");
             return "insertbook";
         }
 
