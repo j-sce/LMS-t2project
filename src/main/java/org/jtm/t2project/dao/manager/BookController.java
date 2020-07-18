@@ -29,7 +29,15 @@ public class BookController {
         return "index";
     }
 
-    @RequestMapping(value = "/insertBook", method = RequestMethod.GET)
+    @RequestMapping(value = "/librarian", method = RequestMethod.GET)
+    public String librarian(HttpServletRequest request,
+                            HttpServletResponse response, Model model) {
+        response.setStatus(HttpServletResponse.SC_OK);
+        return "librarian";
+    }
+
+
+    @RequestMapping(value = "/insertbook", method = RequestMethod.GET)
     public String getInsertBook(HttpServletRequest request,
                                 HttpServletResponse response, ModelMap model) {
 
@@ -41,7 +49,7 @@ public class BookController {
         return "insertbook";
     }
 
-    @RequestMapping(value = "/insertBook", method = RequestMethod.POST)
+    @RequestMapping(value = "/insertbook", method = RequestMethod.POST)
     public String insertBook(@ModelAttribute("book") Book book, HttpServletRequest request,
                              HttpServletResponse response, ModelMap model) {
 

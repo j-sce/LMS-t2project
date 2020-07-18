@@ -11,7 +11,7 @@
 <body>
 	${errorMessage}</br>
 	${message}
-	<form:form method="POST" action="/insertBook" modelAttribute="book">
+	<form:form method="POST" action="/insertbook" modelAttribute="book">
 		<table>
 
 			<tr>
