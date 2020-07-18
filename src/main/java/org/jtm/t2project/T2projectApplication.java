@@ -19,5 +19,5 @@ public class T2projectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(T2projectApplication.class, args);
 	}
-	
+
 }

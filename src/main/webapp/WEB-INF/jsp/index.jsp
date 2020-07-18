@@ -6,13 +6,28 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<%@ include file="tags/header.jsp"%>
 </head>
 <body>
-	<a href='/insertBook'>Insert book</a>
-	<br />
-	<a href='/findBook'>Find book</a>
-	<br />
-	<a href='/deleteBook'>Delete book</a>
-	<br />
+<div class="container">
+  <div class="card-deck mb-3 text-center">
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Student</h4>
+      </div>
+      <div class="card-body">
+        <a href='/student'><button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign</button></a>
+      </div>
+    </div>
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Librarian</h4>
+      </div>
+      <div class="card-body">
+        <a href='/librarian'><button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign</button></a>
+      </div>
+    </div>
+  </div>
+ </div>
 </body>
 </html>
