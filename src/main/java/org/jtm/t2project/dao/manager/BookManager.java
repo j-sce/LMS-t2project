@@ -1,13 +1,12 @@
 package org.jtm.t2project.dao.manager;
 
-import org.jtm.t2project.dao.entity.Author;
 import org.jtm.t2project.dao.entity.Book;
-import org.jtm.t2project.repo.AuthorRepository;
 import org.jtm.t2project.repo.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
+import java.util.Optional;
 
 @Service
 public class BookManager {
@@ -27,4 +26,11 @@ public class BookManager {
         return bookRepository.save(book);
     }
 
+    public Optional <Book> findBookById(Long id) {
+        return bookRepository.findById(id);
+    }
+
+    public void deleteBook(Book book){
+        bookRepository.delete(book);
+    }
 }

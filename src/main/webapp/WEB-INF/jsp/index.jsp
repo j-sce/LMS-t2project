@@ -5,11 +5,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Library</title>
 <%@ include file="tags/header.jsp"%>
 </head>
 <body>
 <div class="container">
+    <br />
   <div class="card-deck mb-3 text-center">
     <div class="card mb-4 shadow-sm">
       <div class="card-header">
