@@ -1,6 +1,7 @@
 package org.jtm.t2project.dao.entity;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,6 +16,18 @@ public class Author {
 
     public Author() {
         super();
+    }
+
+    @ManyToMany(mappedBy = "bookAuthors",
+            cascade = CascadeType.ALL)
+    private List <Book> authorsBooks;
+
+    public List <Book> getAuthorsBooks() {
+        return authorsBooks;
+    }
+
+    public void setAuthorsBooks(List <Book> authorsBooks) {
+        this.authorsBooks = authorsBooks;
     }
 
     public Author(String name) {

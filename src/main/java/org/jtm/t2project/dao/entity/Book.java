@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Lazy;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "Books")
@@ -32,16 +31,16 @@ public class Book {
 //    @Lazy
 //    List <Subject> bookSubjects = new ArrayList <>();
 //
-//    @OneToMany
-//    @JoinTable(
-//            name = "Book_Authors_Map",
-//            joinColumns = {
-//                    @JoinColumn(name = "bookId", referencedColumnName = "id")},
-//            inverseJoinColumns = {
-//                    @JoinColumn(name = "authorId", referencedColumnName = "id")}
-//    )
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(
+            name = "book_authors_map",
+            joinColumns = {
+                    @JoinColumn(name = "bookId", referencedColumnName = "id")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "authorId", referencedColumnName = "id")}
+    )
 //    @Lazy
-//    List <Author> bookAuthors = new ArrayList <>();
+    List <Author> bookAuthors;
 
 //    @ManyToOne
 //    @JoinColumn(name = "Book_issue_id")
@@ -106,13 +105,13 @@ public class Book {
 //        this.bookSubjects = bookSubjects;
 //    }
 //
-//    public List <Author> getBookAuthors() {
-//        return bookAuthors;
-//    }
-//
-//    public void setBookAuthors(List <Author> bookAuthors) {
-//        this.bookAuthors = bookAuthors;
-//    }
+    public List <Author> getBookAuthors() {
+        return bookAuthors;
+    }
+
+    public void setBookAuthors(List <Author> bookAuthors) {
+        this.bookAuthors = bookAuthors;
+    }
 
 //    public BookIssue getBookIssue() {
 //        return bookIssue;

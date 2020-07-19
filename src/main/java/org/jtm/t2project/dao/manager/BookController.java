@@ -30,7 +30,7 @@ public class BookController {
     public String insertBookForm(ModelMap model) {
         Book book = new Book();
         model.addAttribute("book", book);
-//        model.addAttribute("authorsList", bookManager.findAuthor(null));
+        model.addAttribute("authorsList", bookManager.findAuthors(null));
 
         return "insertbook";
     }
@@ -52,6 +52,7 @@ public class BookController {
     public String getUpdatableBook(@PathVariable("id") Long id, Model model) {
         Book book = bookManager.findBookById(id).orElseThrow(NullPointerException::new);
         model.addAttribute("book", book);
+//        model.addAttribute("authorsList", bookManager.findAuthors(null));
 
         return "updatebook";
     }
