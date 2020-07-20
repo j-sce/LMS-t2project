@@ -19,15 +19,15 @@ public class Author {
     }
 
     @ManyToMany(mappedBy = "bookAuthors",
-            cascade = CascadeType.ALL)
-    private List <Book> authorsBooks;
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List <Book> books;
 
     public List <Book> getAuthorsBooks() {
-        return authorsBooks;
+        return books;
     }
 
     public void setAuthorsBooks(List <Book> authorsBooks) {
-        this.authorsBooks = authorsBooks;
+        this.books = authorsBooks;
     }
 
     public Author(String name) {

@@ -31,13 +31,14 @@ public class Book {
 //    @Lazy
 //    List <Subject> bookSubjects = new ArrayList <>();
 //
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(cascade =
+            {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "book_authors_map",
             joinColumns = {
-                    @JoinColumn(name = "bookId", referencedColumnName = "id")},
+                    @JoinColumn(name = "book_Id", referencedColumnName = "id")},
             inverseJoinColumns = {
-                    @JoinColumn(name = "authorId", referencedColumnName = "id")}
+                    @JoinColumn(name = "author_Id", referencedColumnName = "id")}
     )
 //    @Lazy
     List <Author> bookAuthors;
