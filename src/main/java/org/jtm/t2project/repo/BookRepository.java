@@ -13,6 +13,24 @@ public interface BookRepository extends CrudRepository <Book, Long> {
 			nativeQuery = true)
 	List<Book> findByName(String title);
 	
+	@Query(
+			value = "SELECT * FROM Books b where b.isbn like ?1",
+			nativeQuery = true)
+	List<Book> findByIsbn(Long isbn);
 	
+	@Query(
+			value = "SELECT * FROM Books b where b.publisher like ?1",
+			nativeQuery = true)
+	List<Book> findByPublisher(String publisher);
+	
+	@Query(
+			value = "SELECT * FROM Books b where b.year like ?1",
+			nativeQuery = true)
+	List<Book> findByYear(Integer year);
+	
+	@Query(
+			value = "SELECT * FROM Books b where b.available = ?1",
+			nativeQuery = true)
+	List<Book> findAvailable(Boolean available);
 
 }

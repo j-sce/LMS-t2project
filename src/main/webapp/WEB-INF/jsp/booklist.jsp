@@ -17,7 +17,7 @@
 	Title: <c:out value = "${item.title}"/>
 	Publisher: <c:out value = "${item.publisher}"/>
 	Year: <c:out value = "${item.year}"/>
-	Available: <c:out value = "${item.available}"/>
+	Available: <c:out value = "${item.available}"/><p>
 	</c:forEach>
  
 	<a href='/'> Back to home</a>

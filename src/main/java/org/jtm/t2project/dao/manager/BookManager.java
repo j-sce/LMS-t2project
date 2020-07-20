@@ -38,7 +38,12 @@ public class BookManager {
     public List<Book> findBooks(Book book){
     	List<Book> results = new ArrayList<>();
     	bookRepository.findByName(book.getTitle()).forEach(results::add);
+    	bookRepository.findByIsbn(book.getIsbn()).forEach(results::add);
+    	bookRepository.findByPublisher(book.getPublisher()).forEach(results::add);
+    	bookRepository.findByYear(book.getYear()).forEach(results::add);
+    	bookRepository.findAvailable(book.getAvailable()).forEach(results::add);
 		return results;
   	
     }
+    
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class BookController {
@@ -68,33 +70,32 @@ public class BookController {
 		return "insertbook";
 	}
 
-//	@RequestMapping(value = "/findbook", method = RequestMethod.GET)
-//	public String getSearchBook(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
-//
-//		// Create Class Entity
-//		Book book = new Book();
-//		Author author = new Author();
-//		Subject subject = new Subject();
-//		model.addAttribute("book", book);
-//		model.addAttribute("author", author);
-//		model.addAttribute("subject", subject);
-//
-////        model.addAttribute("authorsList", bookManager.findAuthor(null));
-////		book = bookManager.findBook(book);
-//
-//		return "findbook";
-//	}
-
 	@RequestMapping(value = "/findbook", method = RequestMethod.GET)
-	public String searchBook(@RequestParam(value = "title", required = false) String title, HttpServletRequest request,
-			HttpServletResponse response, ModelMap model) {
+	public String getSearchBook(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 
 		// Create Class Entity
 		Book book = new Book();
-		book.setTitle(title);
-//		Author author = new Author();
-//		Subject subject = new Subject();
+		Author author = new Author();
+		Subject subject = new Subject();
+		model.addAttribute("book", book);
+		model.addAttribute("author", author);
+		model.addAttribute("subject", subject);
 
+//        model.addAttribute("authorsList", bookManager.findAuthor(null));
+//		book = bookManager.findBook(book);
+
+		return "findbook";
+	}
+
+	
+	@GetMapping("/findbooks")
+    public String findBook(Long isbn, String title, String publisher, Integer year, Boolean available,  ModelMap model) {
+		Book book = new Book();
+		book.setTitle(title); 
+		book.setIsbn(isbn);
+		book.setPublisher(publisher);
+		book.setYear(year);
+		book.setAvailable(available);
 		try {
 			List<Book> books = bookManager.findBooks(book);
 			model.addAttribute("books", books);
@@ -104,6 +105,5 @@ public class BookController {
 		}
 
 		return "booklist";
-	}
-
+}
 }
