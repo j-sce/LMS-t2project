@@ -9,7 +9,7 @@
 <title>Book title</title>
 </head>
 <body>
-	${errorMessage}</br>
+	${errorMessage}
 	${message}
 	<form:form method="POST" action="/insertbook" modelAttribute="book">
 		<table>

@@ -7,6 +7,9 @@ import org.jtm.t2project.repo.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 @Service
@@ -27,4 +30,15 @@ public class BookManager {
         return bookRepository.save(book);
     }
 
+
+//    public Book findBook(Book book) {
+//        return (Book) bookRepository.findAll();
+//    }
+    
+    public List<Book> findBooks(Book book){
+    	List<Book> results = new ArrayList<>();
+    	bookRepository.findByName(book.getTitle()).forEach(results::add);
+		return results;
+  	
+    }
 }

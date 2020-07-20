@@ -1,6 +1,8 @@
 package org.jtm.t2project.dao.manager;
 
+import org.jtm.t2project.dao.entity.Author;
 import org.jtm.t2project.dao.entity.Book;
+import org.jtm.t2project.dao.entity.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +34,12 @@ public class BookController {
 	public String librarian(HttpServletRequest request, HttpServletResponse response, Model model) {
 		response.setStatus(HttpServletResponse.SC_OK);
 		return "librarian";
+	}
+
+	@RequestMapping(value = "/student", method = RequestMethod.GET)
+	public String student(HttpServletRequest request, HttpServletResponse response, Model model) {
+		response.setStatus(HttpServletResponse.SC_OK);
+		return "student";
 	}
 
 	@RequestMapping(value = "/insertbook", method = RequestMethod.GET)
@@ -57,6 +66,44 @@ public class BookController {
 		}
 
 		return "insertbook";
+	}
+
+//	@RequestMapping(value = "/findbook", method = RequestMethod.GET)
+//	public String getSearchBook(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+//
+//		// Create Class Entity
+//		Book book = new Book();
+//		Author author = new Author();
+//		Subject subject = new Subject();
+//		model.addAttribute("book", book);
+//		model.addAttribute("author", author);
+//		model.addAttribute("subject", subject);
+//
+////        model.addAttribute("authorsList", bookManager.findAuthor(null));
+////		book = bookManager.findBook(book);
+//
+//		return "findbook";
+//	}
+
+	@RequestMapping(value = "/findbook", method = RequestMethod.GET)
+	public String searchBook(@RequestParam(value = "title", required = false) String title, HttpServletRequest request,
+			HttpServletResponse response, ModelMap model) {
+
+		// Create Class Entity
+		Book book = new Book();
+		book.setTitle(title);
+//		Author author = new Author();
+//		Subject subject = new Subject();
+
+		try {
+			List<Book> books = bookManager.findBooks(book);
+			model.addAttribute("books", books);
+		}catch(Exception exception) {
+			model.addAttribute("errorMessage", "Error occur");
+			return "error";
+		}
+
+		return "booklist";
 	}
 
 }
