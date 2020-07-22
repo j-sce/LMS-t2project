@@ -122,13 +122,13 @@ DROP TABLE IF EXISTS `Book_Subject_Map`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Book_Subject_Map` (
-  `bookId` bigint unsigned NOT NULL,
-  `subjectId` bigint unsigned NOT NULL,
-  primary key (`bookId`,`subjectId`),
-  KEY `FK_Book_Subject_Map_1` (`bookId`),
-  KEY `FK_Book_Subject_Map_2` (`subjectId`),
-  CONSTRAINT `FK_Book_Subject_Map_1` FOREIGN KEY (`bookId`) REFERENCES `Books` (`id`),
-  CONSTRAINT `FK_Book_Subject_Map_2` FOREIGN KEY (`subjectId`) REFERENCES `Subject` (`id`)
+  `book_id` bigint unsigned NOT NULL,
+  `subject_id` bigint unsigned NOT NULL,
+  primary key (`book_id`,`subject_id`),
+  KEY `FK_Book_Subject_Map_1` (`book_id`),
+  KEY `FK_Book_Subject_Map_2` (`subject_id`),
+  CONSTRAINT `FK_Book_Subject_Map_1` FOREIGN KEY (`book_id`) REFERENCES `Books` (`id`),
+  CONSTRAINT `FK_Book_Subject_Map_2` FOREIGN KEY (`subject_id`) REFERENCES `Subject` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -174,15 +174,15 @@ DROP TABLE IF EXISTS `Book_issue`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Book_issue` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `bookId` bigint unsigned NOT NULL,
-  `memberId` bigint unsigned NOT NULL,
+  `book_id` bigint unsigned NOT NULL,
+  `member_id` bigint unsigned NOT NULL,
   `date_of_issue` date NOT NULL,
   `term_of_return` date NOT NULL,
   `actual_return_date` date NOT NULL,
   `fine_amount` int,
   PRIMARY KEY (`id`),
-  CONSTRAINT `FK_Book_Issue_Map_1` FOREIGN KEY (`bookId`) REFERENCES `Books` (`id`),
-  CONSTRAINT `FK_Book_Issue_Map_2` FOREIGN KEY (`memberId`) REFERENCES `Members` (`id`)
+  CONSTRAINT `FK_Book_Issue_Map_1` FOREIGN KEY (`book_id`) REFERENCES `Books` (`id`),
+  CONSTRAINT `FK_Book_Issue_Map_2` FOREIGN KEY (`member_id`) REFERENCES `Members` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

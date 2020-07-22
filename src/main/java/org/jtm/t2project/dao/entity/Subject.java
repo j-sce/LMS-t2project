@@ -1,7 +1,8 @@
 package org.jtm.t2project.dao.entity;
 
 import javax.persistence.*;
-import java.util.Set;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Subject")
@@ -11,8 +12,9 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String name;
+    
 
-    public Subject(String name) {
+	public Subject(String name) {
         this.name = name;
     }
 
