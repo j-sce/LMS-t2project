@@ -21,10 +21,10 @@ public class Book {
 	Integer year;
 	Boolean available;
 
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "book_subject_map", joinColumns = {
-			@JoinColumn(name = "bookId", referencedColumnName = "id") }, inverseJoinColumns = {
-					@JoinColumn(name = "subjectId", referencedColumnName = "id") })
+			@JoinColumn(name = "book_id", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "subject_id", referencedColumnName = "id") })
 	
 	@Lazy
 	List <Subject> bookSubjects = new ArrayList <>();
@@ -40,16 +40,12 @@ public class Book {
 //    @Lazy
 //    List <Subject> bookSubjects = new ArrayList <>();
 //
-//    @OneToMany
-//    @JoinTable(
-//            name = "Book_Authors_Map",
-//            joinColumns = {
-//                    @JoinColumn(name = "bookId", referencedColumnName = "id")},
-//            inverseJoinColumns = {
-//                    @JoinColumn(name = "authorId", referencedColumnName = "id")}
-//    )
-//    @Lazy
-//    List <Author> bookAuthors = new ArrayList <>();
+	@OneToMany
+	@JoinTable(name = "book_authors_map", joinColumns = {
+			@JoinColumn(name = "book_id", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "author_id", referencedColumnName = "id") })
+    @Lazy
+    List <Author> bookAuthors = new ArrayList <>();
 
 //    @ManyToOne
 //    @JoinColumn(name = "Book_issue_id")
@@ -114,13 +110,13 @@ public class Book {
 		this.bookSubjects = bookSubjects;
 	}
 
-//    public List <Author> getBookAuthors() {
-//        return bookAuthors;
-//    }
-//
-//    public void setBookAuthors(List <Author> bookAuthors) {
-//        this.bookAuthors = bookAuthors;
-//    }
+    public List <Author> getBookAuthors() {
+        return bookAuthors;
+    }
+
+    public void setBookAuthors(List <Author> bookAuthors) {
+        this.bookAuthors = bookAuthors;
+    }
 //
 //    public BookIssue getBookIssue() {
 //        return bookIssue;

@@ -11,21 +11,31 @@
 	${errorMessage}
 
 	<c:forEach items="${books}" var="item">
-	<p>
-	Books
-	Id: <c:out value="${item.id }" />
-	ISBN: <c:out value="${item.isbn }" />
-	Title: <c:out value="${item.title}" />
-	Publisher: <c:out value="${item.publisher}" />
-	Year: <c:out value="${item.year}" />
-	Available: <c:out value="${item.available}" />
+		<p>
+			Books Id:
+			<c:out value="${item.id }" />
+			ISBN:
+			<c:out value="${item.isbn }" />
+			Title:
+			<c:out value="${item.title}" />
+			Publisher:
+			<c:out value="${item.publisher}" />
+			Year:
+			<c:out value="${item.year}" />
+			Available:
+			<c:out value="${item.available}" />
 		<p>
 			Subject Names:
 			<c:forEach items="${item.bookSubjects}" var="subject">
 				<c:out value="${subject.name }" />
 			</c:forEach>
+		<p>
+			Author Names:
+			<c:forEach items="${item.bookAuthors}" var="author">
+				<c:out value="${author.name }" />
+			</c:forEach>
+		<p>
 	</c:forEach>
-
 
 	<a href='/'> Back to home</a>
 	<br />

@@ -10,7 +10,6 @@ public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-
     String name;
 
     public Subject(String name) {

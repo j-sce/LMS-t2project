@@ -53,9 +53,14 @@ public class BookManager {
 		return bookRepository.findbySubject(ids);
     }
     
-    public List<Book> findBySubjectsNames(String name){
+    public List<Book> findBySubjectsNames(String subject){
 
-		return bookRepository.findbySubjectNames(name);
+		return bookRepository.findbySubjectNames(subject);
+    }
+    
+    public List<Book> findByAuthors(String author){
+
+		return bookRepository.findbyAuthorsNames(author);
     }
     
 }

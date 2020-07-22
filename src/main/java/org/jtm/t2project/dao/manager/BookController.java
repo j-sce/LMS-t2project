@@ -117,7 +117,6 @@ public class BookController {
 	
 	@GetMapping("/findbooks2")
 	public String findBook(ArrayList<Long> ids, ModelMap model) {
-//		ids = new ArrayList<Long>();
 		ids.add(1l);
 		ids.add(2l);
 		ids.add(3l);
@@ -131,12 +130,26 @@ public class BookController {
 		return "booklist";
 	}
 	
-	@GetMapping("/findbooks3")
-	public String findBookSubject(String name, ModelMap model) {
-		Subject subject = new Subject();
-		subject.setName(name);
+	@GetMapping("/findbookssubject")
+	public String findBookSubject(String subject, ModelMap model) {
+		Subject subj = new Subject();
+		subj.setName(subject);
 		try {
-			List<Book> books = bookManager.findBySubjectsNames(name);
+			List<Book> books = bookManager.findBySubjectsNames(subject);
+			model.addAttribute("books", books);
+		} catch (Exception exception) {
+			model.addAttribute("errorMessage", "Error occur");
+			return "error";
+		}
+		return "booklist";
+	}
+	
+	@GetMapping("/findbooksauthor")
+	public String findBookAuthor(String author, ModelMap model) {
+		Author auth = new Author();
+		auth.setName(author);
+		try {
+			List<Book> books = bookManager.findByAuthors(author);
 			model.addAttribute("books", books);
 		} catch (Exception exception) {
 			model.addAttribute("errorMessage", "Error occur");
