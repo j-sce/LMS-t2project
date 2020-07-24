@@ -2,6 +2,7 @@ package org.jtm.t2project.dao.manager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
@@ -61,6 +62,10 @@ public class BookManager {
     public List<Book> findByAuthors(String author){
 
 		return bookRepository.findbyAuthorsNames(author);
+    }
+    
+    public Optional <Book> findBookById(Long id) {
+        return bookRepository.findById(id);
     }
     
 }

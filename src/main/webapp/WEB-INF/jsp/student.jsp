@@ -5,10 +5,17 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Manage Library</title>
+<%@ include file="tags/header.jsp"%>
 </head>
 <body>
-	<a href='/findbook'>Find book</a>
+<div class="container">
+    <br />
+    <a href='/findbook'><button class="btn btn-lg btn-primary btn-block" type="submit">Find book</button></a>
+	<br />
+</div>
+	<br />
+	<a href='/'>Back to home</a>
 	<br />
 </body>
 </html>

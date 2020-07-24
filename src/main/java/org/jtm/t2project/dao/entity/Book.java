@@ -21,7 +21,7 @@ public class Book {
 	Integer year;
 	Boolean available;
 
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "book_subject_map", joinColumns = {
 			@JoinColumn(name = "book_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "subject_id", referencedColumnName = "id") })
@@ -29,7 +29,7 @@ public class Book {
 	@Lazy
 	List <Subject> bookSubjects = new ArrayList <>();
 
-	@OneToMany
+	@ManyToMany
 	@JoinTable(name = "book_authors_map", joinColumns = {
 			@JoinColumn(name = "book_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "author_id", referencedColumnName = "id") })

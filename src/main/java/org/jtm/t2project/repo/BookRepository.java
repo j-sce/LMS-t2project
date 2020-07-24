@@ -38,5 +38,6 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 			+ "left join database_lms.book_authors_map am on am.book_id = b.id "
 			+ "left join database_lms.authors a on am.author_id = a.id where a.name like ?1", nativeQuery = true)
 	List<Book> findbyAuthorsNames(String author);
+	
 
 }

@@ -1,14 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Library</title>
 <%@ include file="tags/header.jsp"%>
+<style>
+body {
+	background-image: url("picture.jpg");
+	background-color: #cccccc;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+</style>
+
 </head>
 <body>
 	<div class="container">
+		<br />
 		<div class="card-deck mb-3 text-center">
 			<div class="card mb-4 shadow-sm">
 				<div class="card-header">

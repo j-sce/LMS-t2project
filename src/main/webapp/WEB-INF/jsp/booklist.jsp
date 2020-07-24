@@ -5,14 +5,15 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Search results</title>
 </head>
 <body>
 	${errorMessage}
 
 	<c:forEach items="${books}" var="item">
 		<p>
-			Books Id:
+			Books:
+			Id:
 			<c:out value="${item.id }" />
 			ISBN:
 			<c:out value="${item.isbn }" />
@@ -25,12 +26,12 @@
 			Available:
 			<c:out value="${item.available}" />
 		<p>
-			Subject Names:
+			Subject:
 			<c:forEach items="${item.bookSubjects}" var="subject">
 				<c:out value="${subject.name }" />
 			</c:forEach>
 		<p>
-			Author Names:
+			Author:
 			<c:forEach items="${item.bookAuthors}" var="author">
 				<c:out value="${author.name }" />
 			</c:forEach>

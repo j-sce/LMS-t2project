@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,17 +74,9 @@ public class BookController {
 		return "insertbook";
 	}
 
-	@RequestMapping(value = "/findbook", method = RequestMethod.GET)
-	public String getSearchBook(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
-
-		// Create Class Entity
+	@GetMapping("/findbook")
+	public String findBook(ModelMap model) {
 		Book book = new Book();
-		Author author = new Author();
-		Subject subject = new Subject();
-		model.addAttribute("book", book);
-		model.addAttribute("author", author);
-		model.addAttribute("subject", subject);
-
 		try {
 			List<Book> books = bookManager.findAll(book);
 			model.addAttribute("books", books);
@@ -90,62 +84,25 @@ public class BookController {
 			model.addAttribute("errorMessage", "Error occur");
 			return "error";
 		}
-
-		return "booklist";
+		return "findbook";
 	}
 
-	@GetMapping("/findbooks")
-	public String findBook(Long isbn, String title, String publisher, Integer year, Boolean available, String name, ModelMap model) {
-		Book book = new Book();
-		book.setTitle(title);
-		book.setIsbn(isbn);
-		book.setPublisher(publisher);
-		book.setYear(year);
-		book.setAvailable(available);
-		
-		
-		try {
-			List<Book> books = bookManager.findBooks(book);
-			model.addAttribute("books", books);
-		} catch (Exception exception) {
-			model.addAttribute("errorMessage", "Error occur");
-			return "error";
-		}
-
-		return "booklist";
-	}
-	
-	@GetMapping("/findbooks2")
-	public String findBook(ArrayList<Long> ids, ModelMap model) {
-		ids.add(1l);
-		ids.add(2l);
-		ids.add(3l);
-		try {
-			List<Book> books = bookManager.findBySubjects(ids);
-			model.addAttribute("books", books);
-		} catch (Exception exception) {
-			model.addAttribute("errorMessage", "Error occur");
-			return "error";
-		}
-		return "booklist";
-	}
-	
-	@GetMapping("/findbookssubject")
-	public String findBookSubject(String subject, ModelMap model) {
+	@RequestMapping(value = "/findbook", params = "subject")
+	public String findBookBySubject(String subject, ModelMap model) {
 		Subject subj = new Subject();
 		subj.setName(subject);
 		try {
-			List<Book> books = bookManager.findBySubjectsNames(subject);
-			model.addAttribute("books", books);
+			List<Book> booksSubjects = bookManager.findBySubjectsNames(subject);
+			model.addAttribute("books", booksSubjects);
 		} catch (Exception exception) {
 			model.addAttribute("errorMessage", "Error occur");
 			return "error";
 		}
-		return "booklist";
+		return "findbook";
 	}
-	
-	@GetMapping("/findbooksauthor")
-	public String findBookAuthor(String author, ModelMap model) {
+
+	@RequestMapping(value = "/findbook", params = "author")
+	public String findBookByAuthor(String author, ModelMap model) {
 		Author auth = new Author();
 		auth.setName(author);
 		try {
@@ -155,7 +112,28 @@ public class BookController {
 			model.addAttribute("errorMessage", "Error occur");
 			return "error";
 		}
-		return "booklist";
+		return "findbook";
 	}
-	
+
+	@RequestMapping(value = "/findbook")
+	public String findBooks(Long isbn, String title, String publisher, Integer year, Boolean available, String name,
+			ModelMap model) {
+		Book book = new Book();
+		book.setIsbn(isbn);
+		book.setTitle(title);
+		book.setPublisher(publisher);
+		book.setYear(year);
+		book.setAvailable(available);
+		try {
+			List<Book> books = bookManager.findBooks(book);
+			model.addAttribute("books", books);
+		} catch (Exception exception) {
+			model.addAttribute("errorMessage", "Error occur");
+			return "error";
+		}
+		return "findbook";
+	}
+
+
+
 }
