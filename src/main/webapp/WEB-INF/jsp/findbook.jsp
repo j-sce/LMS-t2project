@@ -8,68 +8,108 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Find books</title>
-</head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+table, td, th {
+	border: 1px solid #ddd;
+	text-align: left;
+	padding: 15px;
+}
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
 
+body {
+	background-color: #F3F1F0;
+}
+form {
+	float: left;
+}
+label, input {
+    display: block;
+}
+label {
+    margin: 10px;
+}
+.container {
+	width: 700px;
+  	height: 100px;
+  	
+}
+
+</style>
+</head>
 <body>
 	${errorMessage}
-	${message}
+<div class="container">
+	<form method="post" action="findbook">
+		<label for="subject"> Subject</label> 
+		<input name="subject" />
+		<input type="Submit" style="visibility: hidden;"/>
+	</form>      
+	<form method="post" action="findbook">
+		<label for="author"> Author</label> 
+		<input name="author"/>
+		<input type="Submit" style="visibility: hidden;"/>
+	</form>     
+	<form method="post" action="findbook">
+		<label for="isbn">ISBN</label>
+		<input name="isbn" /> 
+		<input type="Submit" style="visibility: hidden;"/>
+	</form>     
+	<form method="post" action="findbook">
+		<label for="title">Book title</label> 
+		<input name="title" />
+		<input type="Submit" style="visibility: hidden;"/>
+	</form>     
+	<form method="post" action="findbook">
+		<label for="publisher">Publisher</label> 
+		<input name="publisher"/>
+		<input type="Submit" style="visibility: hidden;"/>
+	</form>
+	<form method="post" action="findbook">
+		<label for="year">Year</label> 
+		<input name="year" /> 
+		<input type="Submit" style="visibility: hidden;"/>
+	</form>
+	<form method="post" action="findbook"> 
+		<label for="available">Available</label> 
+		<input name="available" /> 
+		<input type="Submit" style="visibility: hidden;"/>
+	</form><br>
+</div>
+<p>
+	<table border="1">
+		<tr>
+			<th>ID</th>
+			<th>ISBN</th>
+			<th>Title</th>
+			<th>Publisher</th>
+			<th>Year</th>
+			<th>Available</th>
+ 			<th>Subject</th>
+			<th>Author</th> 
+		</tr>
 
-	<form  method="post" action="findbook">
-	<label for="subject">Subject</label><br>
-	<input name="subject"/> <input type="Submit" /><br>
-	</form>
-	<form method="post" action="findbook">
-	<label for="author">Author</label><br>
-	<input name="author"/> <input type="Submit"/><br>
-	</form>
-	<form method="post" action="findbook">
-	<label for="isbn">ISBN</label><br>
-	<input name="isbn"/> <input type="Submit" /><br>
-	</form>
-	<form method="post" action="findbook">
-	<label for="title">Book title</label><br>
-	<input name="title"/> <input type="Submit"/><br>
-	</form>
-	<form method="post" action="findbook">
-	<label for="publisher">Publisher</label><br>
-	<input name="publisher"/> <input type="Submit"/><br>
-	</form>
-	<form method="post" action="findbook">
-	<label for="year">Year</label><br>
-	<input name="year"/> <input type="Submit" /><br>
-	</form>
-	<form method="post" action="findbook">
-	<label for="available">Available</label><br>
-	<input name="available"/> <input type="Submit" />
-	</form>
-	<p>
-	
+			<tr>
 			<c:forEach items="${books}" var="item">
-				<p>
-					Book: Id:
-					<c:out value="${item.id }" />
-					ISBN:
-					<c:out value="${item.isbn }" />
-					Title:
-					<c:out value="${item.title}" />
-					Publisher:
-					<c:out value="${item.publisher}" />
-					Year:
-					<c:out value="${item.year}" />
-					Available:
-					<c:out value="${item.available}" />
-				<p>
-					Subject:
-					<c:forEach items="${item.bookSubjects}" var="subject">
-						<c:out value="${subject.name}" />
-					</c:forEach>
-				<p>
-					Author:
-					<c:forEach items="${item.bookAuthors}" var="author">
-						<c:out value="${author.name}" />
-					</c:forEach>
-				<p>
+				<tr>
+				<td><c:out value="${item.id }" /></td>
+				<td><c:out value="${item.isbn }" /></td>
+				<td><c:out value="${item.title}" /></td>
+				<td><c:out value="${item.publisher}" /></td>
+				<td><c:out value="${item.year}" /></td>
+				<td><c:out value="${item.available}" /></td>
+				<td><c:forEach items="${item.bookSubjects}" var="subject">
+					<c:out value="${subject.name}" />
+				</c:forEach></td>
+				<td><c:forEach items="${item.bookAuthors}" var="author">
+					<c:out value="${author.name}" />
+				</c:forEach></td></tr>
 			</c:forEach>
+
+	</table>
 	<a href='/librarian'>Back to menu</a>
 
 </body>
