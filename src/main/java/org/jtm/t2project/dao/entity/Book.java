@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Lazy;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "Books")
@@ -15,7 +14,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    Integer isbn;
+    Long isbn;
     String title;
     String publisher;
     Integer year;
@@ -32,16 +31,17 @@ public class Book {
 //    @Lazy
 //    List <Subject> bookSubjects = new ArrayList <>();
 //
-//    @OneToMany
-//    @JoinTable(
-//            name = "Book_Authors_Map",
-//            joinColumns = {
-//                    @JoinColumn(name = "bookId", referencedColumnName = "id")},
-//            inverseJoinColumns = {
-//                    @JoinColumn(name = "authorId", referencedColumnName = "id")}
-//    )
+    @ManyToMany(cascade =
+            {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "book_authors_map",
+            joinColumns = {
+                    @JoinColumn(name = "book_Id", referencedColumnName = "id")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "author_Id", referencedColumnName = "id")}
+    )
 //    @Lazy
-//    List <Author> bookAuthors = new ArrayList <>();
+    List <Author> bookAuthors;
 
 //    @ManyToOne
 //    @JoinColumn(name = "Book_issue_id")
@@ -58,11 +58,11 @@ public class Book {
         this.id = id;
     }
 
-    public Integer getIsbn() {
+    public Long getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(Integer isbn) {
+    public void setIsbn(Long isbn) {
         this.isbn = isbn;
     }
 
@@ -106,13 +106,13 @@ public class Book {
 //        this.bookSubjects = bookSubjects;
 //    }
 //
-//    public List <Author> getBookAuthors() {
-//        return bookAuthors;
-//    }
-//
-//    public void setBookAuthors(List <Author> bookAuthors) {
-//        this.bookAuthors = bookAuthors;
-//    }
+    public List <Author> getBookAuthors() {
+        return bookAuthors;
+    }
+
+    public void setBookAuthors(List <Author> bookAuthors) {
+        this.bookAuthors = bookAuthors;
+    }
 
 //    public BookIssue getBookIssue() {
 //        return bookIssue;

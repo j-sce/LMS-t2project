@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `Members`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Members` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `role` varchar(9) NOT NULL,
   `book_limit` int,
@@ -42,7 +42,7 @@ DROP TABLE IF EXISTS `Books`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Books` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `ISBN` bigint NOT NULL,
   `title` varchar(45) NOT NULL,
   `publisher` varchar(45) NOT NULL,
@@ -71,13 +71,13 @@ DROP TABLE IF EXISTS `Book_Authors_Map`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Book_Authors_Map` (
-  `bookId` int unsigned NOT NULL,
-  `authorId` int unsigned NOT NULL,
-  primary key (`bookId`,`authorId`),
-  KEY `FK_Book_Authors_Map_1` (`authorId`),
-  KEY `FK_Book_Authors_Map_2` (`bookId`),
-  CONSTRAINT `FK_Book_Authors_Map_1` FOREIGN KEY (`authorId`) REFERENCES `Authors` (`id`),
-  CONSTRAINT `FK_Book_Authors_Map_2` FOREIGN KEY (`bookId`) REFERENCES `Books` (`id`)
+  `book_id` bigint unsigned NOT NULL,
+  `author_id` bigint unsigned NOT NULL,
+  primary key (`book_id`,`author_id`),
+  KEY `FK_Book_Authors_Map_1` (`author_id`),
+  KEY `FK_Book_Authors_Map_2` (`book_id`),
+  CONSTRAINT `FK_Book_Authors_Map_1` FOREIGN KEY (`author_id`) REFERENCES `Authors` (`id`),
+  CONSTRAINT `FK_Book_Authors_Map_2` FOREIGN KEY (`book_id`) REFERENCES `Books` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -99,7 +99,7 @@ DROP TABLE IF EXISTS `Authors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Authors` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
@@ -123,8 +123,8 @@ DROP TABLE IF EXISTS `Book_Subject_Map`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Book_Subject_Map` (
-  `bookId` int unsigned NOT NULL,
-  `subjectId` int unsigned NOT NULL,
+  `bookId` bigint unsigned NOT NULL,
+  `subjectId` bigint unsigned NOT NULL,
   primary key (`bookId`,`subjectId`),
   KEY `FK_Book_Subject_Map_1` (`bookId`),
   KEY `FK_Book_Subject_Map_2` (`subjectId`),
@@ -150,7 +150,7 @@ DROP TABLE IF EXISTS `Subject`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Subject` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
@@ -174,9 +174,9 @@ DROP TABLE IF EXISTS `Book_issue`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Book_issue` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `bookId` int unsigned NOT NULL,
-  `memberId` int unsigned NOT NULL,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `bookId` bigint unsigned NOT NULL,
+  `memberId` bigint unsigned NOT NULL,
   `date_of_issue` date NOT NULL,
   `term_of_return` date NOT NULL,
   `actual_return_date` date NOT NULL,
