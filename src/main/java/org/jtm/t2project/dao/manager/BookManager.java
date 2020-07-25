@@ -32,7 +32,7 @@ public class BookManager {
         return bookRepository.findById(id);
     }
 
-    public void deleteBook(Book book){
+    public void deleteBook(Book book) {
         bookRepository.delete(book);
     }
 
@@ -41,7 +41,7 @@ public class BookManager {
 //    }
 
     public Set <Author> findAuthors() {
-        Set<Author> results = new HashSet <>();
+        Set <Author> results = new HashSet <>();
         authorRepository.findAll().forEach(results::add);
         return results;
     }

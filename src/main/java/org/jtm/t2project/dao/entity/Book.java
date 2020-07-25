@@ -25,7 +25,7 @@ public class Book {
     Integer year;
     Boolean available;
 
-//    @OneToMany
+    //    @OneToMany
 //    @JoinTable(
 //            name = "Book_Subject_Map",
 //            joinColumns = {
@@ -45,7 +45,7 @@ public class Book {
             inverseJoinColumns = {
                     @JoinColumn(name = "author_Id", referencedColumnName = "id")}
     )
-        Set <Author> bookAuthors = new HashSet <Author>();
+    Set <Author> bookAuthors = new HashSet <Author>();
 
     @Override
     public int hashCode() {
@@ -81,16 +81,16 @@ public class Book {
     }
 
     public Book(Long isbn, String title, String publisher, Integer year, Boolean available, Author... bookAuthors) {
-    this.isbn = isbn;
-    this.title = title;
-    this.year = year;
-    this.publisher = publisher;
-    this.available = available;
-    this.bookAuthors = Stream.of(bookAuthors).collect(Collectors.toSet());
+        this.isbn = isbn;
+        this.title = title;
+        this.year = year;
+        this.publisher = publisher;
+        this.available = available;
+        this.bookAuthors = Stream.of(bookAuthors).collect(Collectors.toSet());
 //    this.bookAuthors.forEach(x -> x.getAuthorsBooks().add(this));
     }
 
-    public void addAuthor(Author author){
+    public void addAuthor(Author author) {
         this.bookAuthors.add(author);
 //        author.getAuthorsBooks().add(this);
     }
@@ -143,7 +143,7 @@ public class Book {
         this.available = available;
     }
 
-//    public List <Subject> getBookSubjects() {
+    //    public List <Subject> getBookSubjects() {
 //        return bookSubjects;
 //    }
 //

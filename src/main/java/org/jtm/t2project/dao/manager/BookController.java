@@ -1,5 +1,6 @@
 package org.jtm.t2project.dao.manager;
 
+import org.springframework.security.access.annotation.Secured;
 import org.jtm.t2project.dao.entity.Author;
 import org.jtm.t2project.dao.entity.Book;
 import org.jtm.t2project.repo.AuthorRepository;
@@ -33,6 +34,8 @@ public class BookController {
         return "librarian";
     }
 
+
+    @Secured("ROLE_ADMIN")
     @GetMapping("/insertbook")
     public String insertBookForm(ModelMap model) {
         Book book = new Book();
@@ -42,6 +45,7 @@ public class BookController {
         return "insertbook";
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/insertbook")
     public String insertBook(Book book, ModelMap model) {
         try {
@@ -56,6 +60,7 @@ public class BookController {
         return "insertbook";
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/updatebook/{id}")
     public String getUpdatableBook(@PathVariable("id") Long id, Model model) {
         Book book = bookManager.findBookById(id).orElseThrow(NullPointerException::new);
@@ -65,6 +70,7 @@ public class BookController {
         return "updatebook";
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/updatebook")
     public String updateBook(Book book, ModelMap model) {
         try {
@@ -78,6 +84,7 @@ public class BookController {
         return "updatebook";
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/deletebook/{id}")
     public String getDeletableBook(@PathVariable("id") Long id, Model model) {
         Book book = bookManager.findBookById(id).orElseThrow(NullPointerException::new);
@@ -85,6 +92,7 @@ public class BookController {
         return "deletebook";
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/deletebook")
     public String deleteBook(Book book, ModelMap model) {
         try {
