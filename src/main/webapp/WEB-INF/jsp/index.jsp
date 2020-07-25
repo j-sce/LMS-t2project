@@ -10,10 +10,10 @@
 <style>
 body {
 	background-image: url("https://studier.se/wp-content/uploads/2019/11/chuttersnap-Zf64Osndqvc-unsplash.jpg");
-	background-color: #cccccc;
 	background-size: cover;
+	background-attachment: fixed;
 	background-repeat: no-repeat;
-	background-position: center center fixed;
+	background-position: center center;
 }
 </style>
 </head>
