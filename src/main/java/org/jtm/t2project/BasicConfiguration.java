@@ -27,13 +27,13 @@ public class BasicConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("admin")
                 .password(encoder.encode("admin"))
-                .roles("USER", "ADMIN");
+                .roles("USER","ADMIN");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .formLogin();
+            .formLogin();
         ;
     }
 

@@ -7,27 +7,18 @@
 <meta charset="ISO-8859-1">
 <title>Library</title>
 <%@ include file="tags/header.jsp"%>
+<style>
+body {
+	background-image: url("https://studier.se/wp-content/uploads/2019/11/chuttersnap-Zf64Osndqvc-unsplash.jpg");
+	background-color: #cccccc;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center fixed;
+}
+</style>
 </head>
 <body>
-<div class="container">
-    <br />
-  <div class="card-deck mb-3 text-center">
-    <div class="card mb-4 shadow-sm">
-      <div class="card-header">
-        <h4 class="my-0 font-weight-normal">Student</h4>
-      </div>
-      <div class="card-body">
-        <a href='/student'><button type="button" class="btn btn-lg btn-block btn-outline-primary">Enter</button></a>
-      </div>
-    </div>
-    <div class="card mb-4 shadow-sm">
-      <div class="card-header">
-        <h4 class="my-0 font-weight-normal">Librarian</h4>
-      </div>
-      <div class="card-body">
-        <a href='/librarian'><button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign</button></a>
-      </div>
-    </div>
-  </div>
+
+  <%@ include file="tags/footer.jsp"%>
 </body>
 </html>

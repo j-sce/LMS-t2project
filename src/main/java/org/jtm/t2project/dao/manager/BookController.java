@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -29,13 +30,8 @@ public class BookController {
         return "index";
     }
 
-    @GetMapping("/librarian")
-    public String librarian(Model model) {
-        return "librarian";
-    }
 
-
-    @Secured("ROLE_ADMIN")
+    @RolesAllowed("ADMIN")
     @GetMapping("/insertbook")
     public String insertBookForm(ModelMap model) {
         Book book = new Book();
@@ -45,7 +41,7 @@ public class BookController {
         return "insertbook";
     }
 
-    @Secured("ROLE_ADMIN")
+    @RolesAllowed("ADMIN")
     @PostMapping("/insertbook")
     public String insertBook(Book book, ModelMap model) {
         try {
@@ -60,7 +56,7 @@ public class BookController {
         return "insertbook";
     }
 
-    @Secured("ROLE_ADMIN")
+    @RolesAllowed("ADMIN")
     @GetMapping("/updatebook/{id}")
     public String getUpdatableBook(@PathVariable("id") Long id, Model model) {
         Book book = bookManager.findBookById(id).orElseThrow(NullPointerException::new);
@@ -70,7 +66,7 @@ public class BookController {
         return "updatebook";
     }
 
-    @Secured("ROLE_ADMIN")
+    @RolesAllowed("ADMIN")
     @PostMapping("/updatebook")
     public String updateBook(Book book, ModelMap model) {
         try {
@@ -84,7 +80,7 @@ public class BookController {
         return "updatebook";
     }
 
-    @Secured("ROLE_ADMIN")
+    @RolesAllowed("ADMIN")
     @GetMapping("/deletebook/{id}")
     public String getDeletableBook(@PathVariable("id") Long id, Model model) {
         Book book = bookManager.findBookById(id).orElseThrow(NullPointerException::new);
@@ -92,7 +88,7 @@ public class BookController {
         return "deletebook";
     }
 
-    @Secured("ROLE_ADMIN")
+    @RolesAllowed("ADMIN")
     @PostMapping("/deletebook")
     public String deleteBook(Book book, ModelMap model) {
         try {
@@ -101,7 +97,7 @@ public class BookController {
             model.addAttribute("errorMessage", "Error occured");
             return "deletebook";
         }
-        return "redirect:/librarian";
+        return "redirect:/";
     }
 
 

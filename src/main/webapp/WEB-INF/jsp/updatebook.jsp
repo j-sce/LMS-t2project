@@ -47,8 +47,6 @@
 		</table>
        </div>
 	</form:form>
-	<br />
-	<a href='/librarian'>Back to menu</a>
-	<br />
+  <%@ include file="tags/footer.jsp"%>
 </body>
 </html>
