@@ -1,6 +1,8 @@
 package org.jtm.t2project.dao.manager;
 
+import org.jtm.t2project.dao.entity.Author;
 import org.jtm.t2project.dao.entity.Book;
+import org.jtm.t2project.repo.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,12 +11,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class BookController {
 
     @Autowired
     BookManager bookManager;
+
+    @Autowired
+    AuthorService authorService;
+
 
     @GetMapping("/")
     public String homePage(Model model) {
@@ -30,7 +37,7 @@ public class BookController {
     public String insertBookForm(ModelMap model) {
         Book book = new Book();
         model.addAttribute("book", book);
-        model.addAttribute("authorsList", bookManager.findAuthors(null));
+        model.addAttribute("authorsList", bookManager.findAuthors());
 
         return "insertbook";
     }
@@ -41,6 +48,7 @@ public class BookController {
             book = bookManager.insertBook(book);
             model.addAttribute("message", "Book - "
                     + book.getTitle() + ". Was added to database, id: " + book.getId());
+            model.addAttribute("authorsList", bookManager.findAuthors());
         } catch (Exception exception) {
             model.addAttribute("errorMessage", "Error occured");
             return "insertbook";
@@ -52,7 +60,7 @@ public class BookController {
     public String getUpdatableBook(@PathVariable("id") Long id, Model model) {
         Book book = bookManager.findBookById(id).orElseThrow(NullPointerException::new);
         model.addAttribute("book", book);
-//        model.addAttribute("authorsList", bookManager.findAuthors(null));
+        model.addAttribute("authorsList", book.getBookAuthors());
 
         return "updatebook";
     }

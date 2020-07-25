@@ -30,8 +30,9 @@ public class Author {
         this.books = authorsBooks;
     }
 
-    public Author(String name) {
-        this.name = name;
+    public Author(String id) {
+        super();
+        this.id = new Long(id);
     }
 
     public String getName() {

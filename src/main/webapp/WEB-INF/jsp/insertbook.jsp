@@ -40,7 +40,7 @@
                      <tr>
                      	<td><form:label path="bookAuthors">Authors</form:label></td>
                      	<td><form:select path="bookAuthors" multiple="true">
-                     	<form:options items="${authorsList}" itemValue="id" itemLabel="name"/>
+                     	<form:options items="${authorsList}"  itemValue="id" itemLabel="name"/>
                      	</form:select></td>
                      </tr>
 

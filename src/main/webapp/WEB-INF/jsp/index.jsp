@@ -17,7 +17,7 @@
         <h4 class="my-0 font-weight-normal">Student</h4>
       </div>
       <div class="card-body">
-        <a href='/student'><button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign</button></a>
+        <a href='/student'><button type="button" class="btn btn-lg btn-block btn-outline-primary">Enter</button></a>
       </div>
     </div>
     <div class="card mb-4 shadow-sm">

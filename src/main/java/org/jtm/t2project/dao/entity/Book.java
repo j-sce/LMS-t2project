@@ -1,10 +1,15 @@
 package org.jtm.t2project.dao.entity;
 
+import org.jtm.t2project.repo.AuthorRepository;
 import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Entity
 @Table(name = "Books")
@@ -40,14 +45,54 @@ public class Book {
             inverseJoinColumns = {
                     @JoinColumn(name = "author_Id", referencedColumnName = "id")}
     )
-//    @Lazy
-    List <Author> bookAuthors;
+        Set <Author> bookAuthors = new HashSet <Author>();
 
-//    @ManyToOne
-//    @JoinColumn(name = "Book_issue_id")
-//    private BookIssue bookIssue;
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (!(obj instanceof Book))
+            return false;
+        Book other = (Book) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (isbn == null) {
+            if (other.isbn != null)
+                return false;
+        } else if (!isbn.equals(other.isbn))
+            return false;
+        return true;
+    }
 
     public Book() {
+    }
+
+    public Book(Long isbn, String title, String publisher, Integer year, Boolean available, Author... bookAuthors) {
+    this.isbn = isbn;
+    this.title = title;
+    this.year = year;
+    this.publisher = publisher;
+    this.available = available;
+    this.bookAuthors = Stream.of(bookAuthors).collect(Collectors.toSet());
+//    this.bookAuthors.forEach(x -> x.getAuthorsBooks().add(this));
+    }
+
+    public void addAuthor(Author author){
+        this.bookAuthors.add(author);
+//        author.getAuthorsBooks().add(this);
     }
 
     public Long getId() {
@@ -106,11 +151,11 @@ public class Book {
 //        this.bookSubjects = bookSubjects;
 //    }
 //
-    public List <Author> getBookAuthors() {
+    public Set <Author> getBookAuthors() {
         return bookAuthors;
     }
 
-    public void setBookAuthors(List <Author> bookAuthors) {
+    public void setBookAuthors(Set <Author> bookAuthors) {
         this.bookAuthors = bookAuthors;
     }
 

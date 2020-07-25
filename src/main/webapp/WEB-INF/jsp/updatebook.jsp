@@ -41,7 +41,6 @@
             	<td><form:label path="available">Available</form:label></td>
             	<td><form:input path="available"/></td>
             </tr>
-
 			<tr>
          		<td><button class="btn btn-lg btn-primary btn-block" type="submit">Update</button></td>
 			</tr>
