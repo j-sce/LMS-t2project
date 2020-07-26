@@ -1,12 +1,15 @@
 package org.jtm.t2project.dao.manager;
 
+import org.springframework.security.access.annotation.Secured;
 import org.jtm.t2project.dao.entity.Author;
 import org.jtm.t2project.dao.entity.Book;
+import org.jtm.t2project.repo.AuthorRepository;
 import org.jtm.t2project.dao.entity.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,64 +18,100 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.Map;
 
 @Controller
 public class BookController {
 
-	@Autowired
-	BookManager bookManager;
+    @Autowired
+    BookManager bookManager;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String homePage(HttpServletRequest request, HttpServletResponse response, Model model) {
-//        List <Book> books = bookManager.;
-//        model.addAttribute("books", books);
-		response.setStatus(HttpServletResponse.SC_OK);
-		return "index";
-	}
+    @Autowired
+    AuthorService authorService;
 
-	@RequestMapping(value = "/librarian", method = RequestMethod.GET)
-	public String librarian(HttpServletRequest request, HttpServletResponse response, Model model) {
-		response.setStatus(HttpServletResponse.SC_OK);
-		return "librarian";
-	}
 
-	@RequestMapping(value = "/student", method = RequestMethod.GET)
-	public String student(HttpServletRequest request, HttpServletResponse response, Model model) {
-		response.setStatus(HttpServletResponse.SC_OK);
-		return "student";
-	}
+    @GetMapping("/")
+    public String homePage(Model model) {
+        return "index";
+    }
 
-	@RequestMapping(value = "/insertbook", method = RequestMethod.GET)
-	public String getInsertBook(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
 
-		// Create Class Entity
-		Book book = new Book();
-		model.addAttribute("book", book);
-//        model.addAttribute("authorsList", bookManager.findAuthor(null));
+    @RolesAllowed("ADMIN")
+    @GetMapping("/insertbook")
+    public String insertBookForm(ModelMap model) {
+        Book book = new Book();
+        model.addAttribute("book", book);
+        model.addAttribute("authorsList", bookManager.findAuthors());
 
-		return "insertbook";
-	}
+        return "insertbook";
+    }
 
-	@RequestMapping(value = "/insertbook", method = RequestMethod.POST)
-	public String insertBook(@ModelAttribute("book") Book book, HttpServletRequest request,
-			HttpServletResponse response, ModelMap model) {
+    @RolesAllowed("ADMIN")
+    @PostMapping("/insertbook")
+    public String insertBook(Book book, ModelMap model) {
+        try {
+            book = bookManager.insertBook(book);
+            model.addAttribute("message", "Book - "
+                    + book.getTitle() + ". Was added to database, id: " + book.getId());
+            model.addAttribute("authorsList", bookManager.findAuthors());
+        } catch (Exception exception) {
+            model.addAttribute("errorMessage", "Error occured");
+            return "insertbook";
+        }
+        return "insertbook";
+    }
 
-		try {
-			book = bookManager.insertBook(book);
-			model.addAttribute("message", "Book - " + book.getTitle() + " Was added to DB, id: " + book.getId());
-		} catch (Exception exception) {
-			model.addAttribute("errorMessage", "Error occur: not unique ID");
-			return "insertbook";
-		}
+    @RolesAllowed("ADMIN")
+    @GetMapping("/updatebook/{id}")
+    public String getUpdatableBook(@PathVariable("id") Long id, Model model) {
+        Book book = bookManager.findBookById(id).orElseThrow(NullPointerException::new);
+        model.addAttribute("book", book);
+        model.addAttribute("authorsList", book.getBookAuthors());
 
-		return "insertbook";
-	}
+        return "updatebook";
+    }
+
+    @RolesAllowed("ADMIN")
+    @PostMapping("/updatebook")
+    public String updateBook(Book book, ModelMap model) {
+        try {
+            book = bookManager.insertBook(book);
+            model.addAttribute("message", "Book id: "
+                    + book.getId() + " was updated in database.");
+        } catch (Exception exception) {
+            model.addAttribute("errorMessage", "Error occured");
+            return "updatebook";
+        }
+        return "updatebook";
+    }
+
+    @RolesAllowed("ADMIN")
+    @GetMapping("/deletebook/{id}")
+    public String getDeletableBook(@PathVariable("id") Long id, Model model) {
+        Book book = bookManager.findBookById(id).orElseThrow(NullPointerException::new);
+        model.addAttribute("book", book);
+        return "deletebook";
+    }
+
+    @RolesAllowed("ADMIN")
+    @PostMapping("/deletebook")
+    public String deleteBook(Book book, ModelMap model) {
+        try {
+            bookManager.deleteBook(book);
+        } catch (Exception exception) {
+            model.addAttribute("errorMessage", "Error occured");
+            return "deletebook";
+        }
+        return "redirect:/";
+    }
 
 	@GetMapping("/findbook")
 	public String findBook(ModelMap model) {
