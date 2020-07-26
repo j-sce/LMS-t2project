@@ -1,11 +1,11 @@
 package org.jtm.t2project.dao.manager;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
+import org.jtm.t2project.dao.entity.Author;
 import org.jtm.t2project.dao.entity.Book;
 import org.jtm.t2project.dao.entity.Subject;
+import org.jtm.t2project.repo.AuthorRepository;
 import org.jtm.t2project.repo.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +18,8 @@ import javax.persistence.EntityManager;
 public class BookManager {
     private EntityManager entityManager;
 
-//    @Autowired
-//    AuthorRepository authorRepository;
+    @Autowired
+    AuthorRepository authorRepository;
 
     @Autowired
     BookRepository bookRepository;
@@ -66,11 +66,6 @@ public class BookManager {
         return bookRepository.findById(id);
     }
 
-}
-    public Optional <Book> findBookById(Long id) {
-        return bookRepository.findById(id);
-    }
-
     public void deleteBook(Book book) {
         bookRepository.delete(book);
     }
@@ -79,9 +74,9 @@ public class BookManager {
 //        return bookRepository.findByAuthor(authorIds);
 //    }
 
-//    public Set <Author> findAuthors() {
-//        Set <Author> results = new HashSet <>();
-//        authorRepository.findAll().forEach(results::add);
-//        return results;
-//    }
+    public Set <Author> findAuthors() {
+        Set <Author> results = new HashSet <>();
+        authorRepository.findAll().forEach(results::add);
+        return results;
+    }
 }

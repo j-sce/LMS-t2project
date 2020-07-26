@@ -9,7 +9,7 @@
 <%@ include file="tags/header.jsp"%>
 <style>
 body {
-	background-image: url("https://studier.se/wp-content/uploads/2019/11/chuttersnap-Zf64Osndqvc-unsplash.jpg");
+	background-image: url("https://images.unsplash.com/photo-1549675584-91f19337af3d");
 	background-size: cover;
 	background-attachment: fixed;
 	background-repeat: no-repeat;

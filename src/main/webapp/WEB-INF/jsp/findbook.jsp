@@ -8,6 +8,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Find books</title>
+<%@ include file="tags/header.jsp"%>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <style>
 table, td, th {
@@ -110,7 +111,5 @@ label {
 			</c:forEach>
 
 	</table>
-	<a href='/librarian'>Back to menu</a>
-
 </body>
 </html>
