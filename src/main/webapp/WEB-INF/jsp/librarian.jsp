@@ -5,16 +5,25 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Manage Library</title>
+<%@ include file="tags/header.jsp"%>
 </head>
 <body>
-	<a href='/findbook'>Find book</a>
-	<br />
-	<a href='/insertbook'>Insert book</a>
-	<br />
-	<a href='/updatebook'>Update book</a>
+<div class="container">
     <br />
-	<a href='/deletebook'>Delete book</a>
+    <a href='/findbook'><button class="btn btn-lg btn-primary btn-block" type="submit">Find book</button></a>
+	<br />
+    <a href='/insertbook'><button class="btn btn-lg btn-primary btn-block" type="submit">Insert book</button></a>
+	<br />
+	<a href='/updatebook'><button class="btn btn-lg btn-primary btn-block" type="submit">Update book</button></a>
+    <br />
+	<a href='/deletebook'><button class="btn btn-lg btn-primary btn-block" type="submit">Delete book</button></a>
+    <br />
+    <a href='/issuebook'><button class="btn btn-lg btn-primary btn-block" type="submit">Issue book</button></a>
+    <br />
+</div>
+	<br />
+	<a href='/'>Back to home</a>
 	<br />
 </body>
 </html>
