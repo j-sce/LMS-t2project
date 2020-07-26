@@ -43,4 +43,14 @@ public class BookManager {
         authorRepository.findAll().forEach(results::add);
         return results;
     }
+
+	public List<Book> bookAll(Book book) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Book issueBook(Book book) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

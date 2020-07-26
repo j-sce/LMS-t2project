@@ -19,6 +19,8 @@
     <br />
 	<a href='/deletebook'><button class="btn btn-lg btn-primary btn-block" type="submit">Delete book</button></a>
     <br />
+    <a href='/issuebook'><button class="btn btn-lg btn-primary btn-block" type="submit">Issue book</button></a>
+    <br />
 </div>
 	<br />
 	<a href='/'>Back to home</a>
