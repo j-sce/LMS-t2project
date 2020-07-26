@@ -9,9 +9,8 @@ public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String name;
+    Long id;
+    String name;
 
     public Author() {
         super();
