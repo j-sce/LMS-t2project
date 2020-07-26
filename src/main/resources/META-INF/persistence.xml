@@ -5,7 +5,6 @@
              version="2.1">
 
     <persistence-unit name="PTeam_JTM" transaction-type="RESOURCE_LOCAL">
-        <!-- <provider>org.hibernate.ejb.HibernatePersistence</provider> -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

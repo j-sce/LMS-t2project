@@ -1,6 +1,7 @@
 package org.jtm.t2project.dao.manager;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -17,8 +18,8 @@ public class AuthorService {
     @Autowired
     private AuthorRepository repo;
 
-    public List <Author> listAll() {
-        return (ArrayList <Author>) repo.findAll();
+    public Set <Author> listAll() {
+        return (HashSet <Author>) repo.findAll();
     }
 
     public void save(Author author) {

@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -11,15 +12,26 @@ import java.util.Set;
 @Table(name = "Books")
 public class Book {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
-	Long isbn;
-	String title;
-	String publisher;
-	Integer year;
-	Boolean available;
+    Long isbn;
+    String title;
+    String publisher;
+    Integer year;
+    Boolean available;
+
+    @ManyToMany(cascade =
+            {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "book_authors_map",
+            joinColumns = {
+                    @JoinColumn(name = "book_Id", referencedColumnName = "id")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "author_Id", referencedColumnName = "id")}
+    )
+    Set <Author> bookAuthors = new HashSet <Author>();
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "book_subject_map", joinColumns = {
@@ -27,80 +39,72 @@ public class Book {
 					@JoinColumn(name = "subject_id", referencedColumnName = "id") })
 
 	@Lazy
-	List <Subject> bookSubjects = new ArrayList <>();
+	Set <Subject> bookSubjects = new HashSet <>();
 
-	@ManyToMany
-	@JoinTable(name = "book_authors_map", joinColumns = {
-			@JoinColumn(name = "book_id", referencedColumnName = "id") }, inverseJoinColumns = {
-					@JoinColumn(name = "author_id", referencedColumnName = "id") })
+    public Book() {
+    }
 
-    @Lazy
-    List <Author> bookAuthors = new ArrayList <>();
+    public Long getId() {
+        return id;
+    }
 
-	public Book() {
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getIsbn() {
+        return isbn;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setIsbn(Long isbn) {
+        this.isbn = isbn;
+    }
 
-	public Long getIsbn() {
-		return isbn;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setIsbn(Long isbn) {
-		this.isbn = isbn;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public String getPublisher() {
+        return publisher;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
 
-	public String getPublisher() {
-		return publisher;
-	}
+    public Integer getYear() {
+        return year;
+    }
 
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
-	}
+    public void setYear(Integer year) {
+        this.year = year;
+    }
 
-	public Integer getYear() {
-		return year;
-	}
+    public Boolean getAvailable() {
+        return available;
+    }
 
-	public void setYear(Integer year) {
-		this.year = year;
-	}
+    public void setAvailable(Boolean available) {
+        this.available = available;
+    }
 
-	public Boolean getAvailable() {
-		return available;
-	}
-
-	public void setAvailable(Boolean available) {
-		this.available = available;
-	}
-
-	public List<Subject> getBookSubjects() {
+	public Set<Subject> getBookSubjects() {
 		return bookSubjects;
 	}
 
-	public void setBookSubjects(List<Subject> bookSubjects) {
+	public void setBookSubjects(Set <Subject> bookSubjects) {
 		this.bookSubjects = bookSubjects;
 	}
 
-    public List <Author> getBookAuthors() {
+    public Set <Author> getBookAuthors() {
         return bookAuthors;
     }
 
-    public void setBookAuthors(List <Author> bookAuthors) {
+    public void setBookAuthors(Set <Author> bookAuthors) {
         this.bookAuthors = bookAuthors;
     }
 //
