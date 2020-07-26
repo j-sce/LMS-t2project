@@ -18,15 +18,16 @@ public class BookIssue {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Date issue;
     private Date toReturn;
     private Date returned;
     private Double fine;
+   // private int issuedBooks; 
+    //private Member borrower; 
 
 @OneToMany(
 mappedBy = "Book_issue_id")
-	private Set <Book> issuedBooks;
+	private int issuedBooks;
 
 @OneToOne(
 mappedBy = "Book_issue_id")
@@ -79,7 +80,7 @@ mappedBy = "Book_issue_id")
     	return getIssuedBooks();
 	}
     
-    public void setIssuedBooks(Set <Book> issuedBooks) {
+    public void setIssuedBooks(int issuedBooks) {
     	this.issuedBooks = issuedBooks;
 	}
 
@@ -90,4 +91,11 @@ mappedBy = "Book_issue_id")
     public void setBorrower(Member borrower) {
     	this.borrower = borrower;
 	}
+    
+	@Override
+	public String toString() {
+		return "BookIssue [id=" + id + ", issue=" + issue
+				+ ", toReturn=" + toReturn + ", returned=" + returned + ", fine=" + fine + ", issuedBooks=" + issuedBooks + ", borrower=" + borrower + "]";
+	}
+
 }

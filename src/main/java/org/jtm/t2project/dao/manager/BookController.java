@@ -2,6 +2,7 @@ package org.jtm.t2project.dao.manager;
 
 import org.jtm.t2project.dao.entity.Author;
 import org.jtm.t2project.dao.entity.Book;
+import org.jtm.t2project.dao.entity.BookIssue;
 import org.jtm.t2project.dao.entity.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,18 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class BookController {
@@ -134,26 +129,18 @@ public class BookController {
 		return "findbook";
 	}
 	
+	
 	@GetMapping("/issuebook")
-	public String issueBook(ModelMap model) {
+	public String findAll(ModelMap model) {
 		Book book = new Book();
 		try {
-			List<Book> books = bookManager.bookAll(book);
-			model.addAttribute("books", books);
+			List<BookIssue> issues = BookIssue.findAll(book);
+			model.addAttribute("issue", issue);
 		} catch (Exception exception) {
 			model.addAttribute("errorMessage", "Error occured");
 			return "error";
 		}
 		return "issuebook";
-	}
-
-	@RequestMapping(value = "/issuebook", method = RequestMethod.GET)
-	public String issueBook(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
-		
-		Book book = new Book();
-		model.addAttribute("book", book);
-		
-			return "issuebook";
 	}
 	
 	@RequestMapping(value = "/issuebook", method = RequestMethod.POST)
@@ -166,11 +153,8 @@ public class BookController {
 			model.addAttribute("errorMessage", "Error occur: not unique ID");
 			return "issuebook";
 		}
-
 		return "issuebook";
 	}
-
-
 
 
 }

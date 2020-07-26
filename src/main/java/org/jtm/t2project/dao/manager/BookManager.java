@@ -49,8 +49,29 @@ public class BookManager {
 		return null;
 	}
 
-	public Book issueBook(Book book) {
-		// TODO Auto-generated method stub
+	/*public List<Book> bookAll(Book book) {
 		return null;
 	}
+
+	public Book issueBook(Book book) {
+		return null;
+	}
+
+	public List<Book> findAll(Book book) {
+		return null;
+	}
+
+	public List<Book> findBySubjectsNames(String subject) {
+		return null;
+	}
+
+	public List<Book> findByAuthors(String author) {
+		return null;
+	}
+
+	public List<Book> findBooks(Book book) {
+		return null;
+	}
+*/
+    
 }

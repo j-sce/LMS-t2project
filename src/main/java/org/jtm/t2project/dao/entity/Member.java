@@ -2,6 +2,8 @@ package org.jtm.t2project.dao.entity;
 
 import org.jtm.t2project.dao.entity.BookIssue;
 
+import java.util.Date;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,15 +13,10 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String role;
     private Integer bookLimit;
     private Double fine;
-
-//    @OneToOne
-//    @JoinColumn(name = "Book_issue_id")
-//    private BookIssue bookIssue;
 
     public Member() {
     }
@@ -31,15 +28,6 @@ public class Member {
     public void setId(Long id) {
         this.id = id;
     }
-
-//    public BookIssue getBookIssue() {
-//        return bookIssue;
-//    }
-
-//    public void setBookIssue(BookIssue bookIssue) {
-//        this.bookIssue = bookIssue;
-////        bookIssue.addMember(this);
-//    }
 
     public String getName() {
         return name;
@@ -72,4 +60,10 @@ public class Member {
     public void setFine(Double fine) {
         this.fine = fine;
     }
+    
+    @Override
+	public String toString() {
+		return "BookIssue [id=" + id + ", name=" + name + ", role=" + role + ", fine=" + fine + ", bookLimit=" + bookLimit + "]";
+	}
+
 }
