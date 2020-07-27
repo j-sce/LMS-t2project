@@ -12,9 +12,9 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String name;
-    
 
-	public Subject(String name) {
+
+    public Subject(String name) {
         this.name = name;
     }
 

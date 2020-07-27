@@ -113,66 +113,65 @@ public class BookController {
         return "redirect:/";
     }
 
-	@GetMapping("/findbook")
-	public String findBook(ModelMap model) {
-		Book book = new Book();
-		try {
-			List<Book> books = bookManager.findAll(book);
-			model.addAttribute("books", books);
-		} catch (Exception exception) {
-			model.addAttribute("errorMessage", "Error occur");
-			return "error";
-		}
-		return "findbook";
-	}
+    @GetMapping("/findbook")
+    public String findBook(ModelMap model) {
+        Book book = new Book();
+        try {
+            List <Book> books = bookManager.findAll(book);
+            model.addAttribute("books", books);
+        } catch (Exception exception) {
+            model.addAttribute("errorMessage", "Error occur");
+            return "error";
+        }
+        return "findbook";
+    }
 
-	@RequestMapping(value = "/findbook", params = "subject")
-	public String findBookBySubject(String subject, ModelMap model) {
-		Subject subj = new Subject();
-		subj.setName(subject);
-		try {
-			List<Book> booksSubjects = bookManager.findBySubjectsNames(subject);
-			model.addAttribute("books", booksSubjects);
-		} catch (Exception exception) {
-			model.addAttribute("errorMessage", "Error occur");
-			return "error";
-		}
-		return "findbook";
-	}
+    @RequestMapping(value = "/findbook", params = "subject")
+    public String findBookBySubject(String subject, ModelMap model) {
+        Subject subj = new Subject();
+        subj.setName(subject);
+        try {
+            List <Book> booksSubjects = bookManager.findBySubjectsNames(subject);
+            model.addAttribute("books", booksSubjects);
+        } catch (Exception exception) {
+            model.addAttribute("errorMessage", "Error occur");
+            return "error";
+        }
+        return "findbook";
+    }
 
-	@RequestMapping(value = "/findbook", params = "author")
-	public String findBookByAuthor(String author, ModelMap model) {
-		Author auth = new Author();
-		auth.setName(author);
-		try {
-			List<Book> books = bookManager.findByAuthors(author);
-			model.addAttribute("books", books);
-		} catch (Exception exception) {
-			model.addAttribute("errorMessage", "Error occur");
-			return "error";
-		}
-		return "findbook";
-	}
+    @RequestMapping(value = "/findbook", params = "author")
+    public String findBookByAuthor(String author, ModelMap model) {
+        Author auth = new Author();
+        auth.setName(author);
+        try {
+            List <Book> books = bookManager.findByAuthors(author);
+            model.addAttribute("books", books);
+        } catch (Exception exception) {
+            model.addAttribute("errorMessage", "Error occur");
+            return "error";
+        }
+        return "findbook";
+    }
 
-	@RequestMapping(value = "/findbook")
-	public String findBooks(Long isbn, String title, String publisher, Integer year, Boolean available, String name,
-			ModelMap model) {
-		Book book = new Book();
-		book.setIsbn(isbn);
-		book.setTitle(title);
-		book.setPublisher(publisher);
-		book.setYear(year);
-		book.setAvailable(available);
-		try {
-			List<Book> books = bookManager.findBooks(book);
-			model.addAttribute("books", books);
-		} catch (Exception exception) {
-			model.addAttribute("errorMessage", "Error occur");
-			return "error";
-		}
-		return "findbook";
-	}
-
+    @RequestMapping(value = "/findbook")
+    public String findBooks(Long isbn, String title, String publisher, Integer year, Boolean available, String name,
+                            ModelMap model) {
+        Book book = new Book();
+        book.setIsbn(isbn);
+        book.setTitle(title);
+        book.setPublisher(publisher);
+        book.setYear(year);
+        book.setAvailable(available);
+        try {
+            List <Book> books = bookManager.findBooks(book);
+            model.addAttribute("books", books);
+        } catch (Exception exception) {
+            model.addAttribute("errorMessage", "Error occur");
+            return "error";
+        }
+        return "findbook";
+    }
 
 
 }

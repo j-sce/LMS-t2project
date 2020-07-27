@@ -20,6 +20,6 @@ public class AuthorController {
     @Autowired
     private AuthorService service;
 
-    
+
 }
 

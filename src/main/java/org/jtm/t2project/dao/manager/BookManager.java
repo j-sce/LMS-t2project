@@ -29,37 +29,37 @@ public class BookManager {
     }
 
 
-    public List<Book> findAll(Book book) {
-    	List<Book> results = new ArrayList<>();
-    	bookRepository.findAll().forEach(results::add);
-    	return results;
+    public List <Book> findAll(Book book) {
+        List <Book> results = new ArrayList <>();
+        bookRepository.findAll().forEach(results::add);
+        return results;
     }
 
 
-    public List<Book> findBooks(Book book){
-    	List<Book> results = new ArrayList<>();
-    	bookRepository.findByName(book.getTitle()).forEach(results::add);
-    	bookRepository.findByIsbn(book.getIsbn()).forEach(results::add);
-    	bookRepository.findByPublisher(book.getPublisher()).forEach(results::add);
-    	bookRepository.findByYear(book.getYear()).forEach(results::add);
-    	bookRepository.findAvailable(book.getAvailable()).forEach(results::add);
-		return results;
+    public List <Book> findBooks(Book book) {
+        List <Book> results = new ArrayList <>();
+        bookRepository.findByName(book.getTitle()).forEach(results::add);
+        bookRepository.findByIsbn(book.getIsbn()).forEach(results::add);
+        bookRepository.findByPublisher(book.getPublisher()).forEach(results::add);
+        bookRepository.findByYear(book.getYear()).forEach(results::add);
+        bookRepository.findAvailable(book.getAvailable()).forEach(results::add);
+        return results;
 
     }
 
-    public List<Book> findBySubjects(List<Long> ids){
+    public List <Book> findBySubjects(List <Long> ids) {
 
-		return bookRepository.findbySubject(ids);
+        return bookRepository.findbySubject(ids);
     }
 
-    public List<Book> findBySubjectsNames(String subject){
+    public List <Book> findBySubjectsNames(String subject) {
 
-		return bookRepository.findbySubjectNames(subject);
+        return bookRepository.findbySubjectNames(subject);
     }
 
-    public List<Book> findByAuthors(String author){
+    public List <Book> findByAuthors(String author) {
 
-		return bookRepository.findbyAuthorsNames(author);
+        return bookRepository.findbyAuthorsNames(author);
     }
 
     public Optional <Book> findBookById(Long id) {

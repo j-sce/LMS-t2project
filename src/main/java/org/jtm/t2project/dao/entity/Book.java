@@ -22,8 +22,7 @@ public class Book {
     Integer year;
     Boolean available;
 
-    @ManyToMany(cascade =
-            {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany
     @JoinTable(
             name = "book_authors_map",
             joinColumns = {
@@ -33,13 +32,13 @@ public class Book {
     )
     Set <Author> bookAuthors = new HashSet <Author>();
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "book_subject_map", joinColumns = {
-			@JoinColumn(name = "book_id", referencedColumnName = "id") }, inverseJoinColumns = {
-					@JoinColumn(name = "subject_id", referencedColumnName = "id") })
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "book_subject_map", joinColumns = {
+            @JoinColumn(name = "book_id", referencedColumnName = "id")}, inverseJoinColumns = {
+            @JoinColumn(name = "subject_id", referencedColumnName = "id")})
 
-	@Lazy
-	Set <Subject> bookSubjects = new HashSet <>();
+    @Lazy
+    Set <Subject> bookSubjects = new HashSet <>();
 
     public Book() {
     }
@@ -92,13 +91,13 @@ public class Book {
         this.available = available;
     }
 
-	public Set<Subject> getBookSubjects() {
-		return bookSubjects;
-	}
+    public Set <Subject> getBookSubjects() {
+        return bookSubjects;
+    }
 
-	public void setBookSubjects(Set <Subject> bookSubjects) {
-		this.bookSubjects = bookSubjects;
-	}
+    public void setBookSubjects(Set <Subject> bookSubjects) {
+        this.bookSubjects = bookSubjects;
+    }
 
     public Set <Author> getBookAuthors() {
         return bookAuthors;
