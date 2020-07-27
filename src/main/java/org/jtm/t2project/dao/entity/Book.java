@@ -22,14 +22,10 @@ public class Book {
     Integer year;
     Boolean available;
 
-    @ManyToMany(cascade =
-            {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "book_authors_map",
-            joinColumns = {
-                    @JoinColumn(name = "book_Id", referencedColumnName = "id")},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "author_Id", referencedColumnName = "id")}
+	@ManyToMany
+	@JoinTable(name = "book_authors_map", joinColumns = {
+			@JoinColumn(name = "book_id", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "author_id", referencedColumnName = "id") }
     )
     Set <Author> bookAuthors = new HashSet <Author>();
 
