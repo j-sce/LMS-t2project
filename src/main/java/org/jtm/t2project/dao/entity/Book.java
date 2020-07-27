@@ -32,12 +32,14 @@ public class Book {
     )
     Set <Author> bookAuthors = new HashSet <Author>();
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "book_subject_map", joinColumns = {
-            @JoinColumn(name = "book_id", referencedColumnName = "id")}, inverseJoinColumns = {
-            @JoinColumn(name = "subject_id", referencedColumnName = "id")})
-
-    @Lazy
+    @ManyToMany
+    @JoinTable(
+            name = "book_subject_map",
+            joinColumns = {
+                    @JoinColumn(name = "book_id", referencedColumnName = "id")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "subject_id", referencedColumnName = "id")}
+    )
     Set <Subject> bookSubjects = new HashSet <>();
 
     public Book() {

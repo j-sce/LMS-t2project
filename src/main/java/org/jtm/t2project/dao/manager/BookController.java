@@ -50,7 +50,7 @@ public class BookController {
         Book book = new Book();
         model.addAttribute("book", book);
         model.addAttribute("authorsList", bookManager.findAuthors());
-
+        model.addAttribute("subjectList", bookManager.findSubjects());
         return "insertbook";
     }
 
@@ -59,14 +59,15 @@ public class BookController {
     public String insertBook(Book book, ModelMap model) {
         try {
             book = bookManager.insertBook(book);
-            model.addAttribute("message", "Book - "
-                    + book.getTitle() + ". Was added to database, id: " + book.getId());
+//            model.addAttribute("message", "Book - "
+//                    + book.getTitle() + ". Was added to database, id: " + book.getId());
             model.addAttribute("authorsList", bookManager.findAuthors());
+            model.addAttribute("subjectList", bookManager.findSubjects());
         } catch (Exception exception) {
             model.addAttribute("errorMessage", "Error occured");
             return "insertbook";
         }
-        return "insertbook";
+        return "redirect:/findbook";
     }
 
     @RolesAllowed("ADMIN")
@@ -75,6 +76,8 @@ public class BookController {
         Book book = bookManager.findBookById(id).orElseThrow(NullPointerException::new);
         model.addAttribute("book", book);
         model.addAttribute("authorsList", book.getBookAuthors());
+        model.addAttribute("authorsList", bookManager.findAuthors());
+        model.addAttribute("subjectList", bookManager.findSubjects());
 
         return "updatebook";
     }
@@ -84,13 +87,15 @@ public class BookController {
     public String updateBook(Book book, ModelMap model) {
         try {
             book = bookManager.insertBook(book);
-            model.addAttribute("message", "Book id: "
-                    + book.getId() + " was updated in database.");
+//            model.addAttribute("message", "Book id: "
+//                    + book.getId() + " was updated in database.");
+            model.addAttribute("authorsList", bookManager.findAuthors());
+            model.addAttribute("subjectList", bookManager.findSubjects());
         } catch (Exception exception) {
             model.addAttribute("errorMessage", "Error occured");
             return "updatebook";
         }
-        return "updatebook";
+        return "redirect:/findbook";
     }
 
     @RolesAllowed("ADMIN")
@@ -110,7 +115,7 @@ public class BookController {
             model.addAttribute("errorMessage", "Error occured");
             return "deletebook";
         }
-        return "redirect:/";
+        return "redirect:/findbook";
     }
 
     @GetMapping("/findbook")
@@ -171,6 +176,34 @@ public class BookController {
             return "error";
         }
         return "findbook";
+    }
+
+    @RolesAllowed("ADMIN")
+    @GetMapping("/booktoupdate")
+    public String bookToUpd(ModelMap model) {
+        Book book = new Book();
+        try {
+            List <Book> books = bookManager.findAll(book);
+            model.addAttribute("books", books);
+        } catch (Exception exception) {
+            model.addAttribute("errorMessage", "Error occur");
+            return "error";
+        }
+        return "booktoupdate";
+    }
+
+    @RolesAllowed("ADMIN")
+    @GetMapping("/booktodelete")
+    public String bookToDel(ModelMap model) {
+        Book book = new Book();
+        try {
+            List <Book> books = bookManager.findAll(book);
+            model.addAttribute("books", books);
+        } catch (Exception exception) {
+            model.addAttribute("errorMessage", "Error occur");
+            return "error";
+        }
+        return "booktodelete";
     }
 
 

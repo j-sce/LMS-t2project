@@ -41,6 +41,18 @@
             	<td><form:label path="available">Available</form:label></td>
             	<td><form:input path="available"/></td>
             </tr>
+            <tr>
+                <td><form:label path="bookAuthors">Authors</form:label></td>
+                <td><form:select path="bookAuthors" multiple="true">
+                <form:options items="${authorsList}"  itemValue="id" itemLabel="name"/>
+                </form:select></td>
+            </tr>
+            <tr>
+                <td><form:label path="bookSubjects">Subjects</form:label></td>
+                <td><form:select path="bookSubjects" multiple="true">
+                <form:options items="${subjectList}"  itemValue="id" itemLabel="name"/>
+                </form:select></td>
+            </tr>
 			<tr>
          		<td><button class="btn btn-lg btn-primary btn-block" type="submit">Update</button></td>
 			</tr>
