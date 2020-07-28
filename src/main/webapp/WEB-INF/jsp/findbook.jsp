@@ -20,7 +20,6 @@ table {
 	border-collapse: collapse;
 	width: 100%;
 }
-
 body {
 	background-color: #F3F1F0;
 }
@@ -36,52 +35,51 @@ label {
 .container {
 	width: 700px;
   	height: 100px;
-  	
-}
 
+}
 </style>
 </head>
 <body>
 	${errorMessage}
 <div class="container">
 	<form method="post" action="findbook">
-		<label for="subject"> Subject</label> 
+		<label for="subject"> Subject</label>
 		<input name="subject" />
 		<input type="Submit" style="visibility: hidden;"/>
-	</form>      
+	</form>
 	<form method="post" action="findbook">
-		<label for="author"> Author</label> 
+		<label for="author"> Author</label>
 		<input name="author"/>
 		<input type="Submit" style="visibility: hidden;"/>
-	</form>     
+	</form>
 	<form method="post" action="findbook">
 		<label for="isbn">ISBN</label>
-		<input name="isbn" /> 
+		<input name="isbn" />
 		<input type="Submit" style="visibility: hidden;"/>
-	</form>     
+	</form>
 	<form method="post" action="findbook">
-		<label for="title">Book title</label> 
+		<label for="title">Book title</label>
 		<input name="title" />
 		<input type="Submit" style="visibility: hidden;"/>
-	</form>     
+	</form>
 	<form method="post" action="findbook">
-		<label for="publisher">Publisher</label> 
+		<label for="publisher">Publisher</label>
 		<input name="publisher"/>
 		<input type="Submit" style="visibility: hidden;"/>
 	</form>
 	<form method="post" action="findbook">
-		<label for="year">Year</label> 
-		<input name="year" /> 
+		<label for="year">Year</label>
+		<input name="year" />
 		<input type="Submit" style="visibility: hidden;"/>
 	</form>
-	<form method="post" action="findbook"> 
-		<label for="available">Available</label> 
-		<input name="available" /> 
+	<form method="post" action="findbook">
+		<label for="available">Available</label>
+		<input name="available" />
 		<input type="Submit" style="visibility: hidden;"/>
 	</form><br>
 </div>
 <p>
-	<table border="1">
+	<table class="table table-striped" border="1">
 		<tr>
 			<th>ID</th>
 			<th>ISBN</th>
@@ -90,7 +88,7 @@ label {
 			<th>Year</th>
 			<th>Available</th>
  			<th>Subject</th>
-			<th>Author</th> 
+			<th>Author</th>
 		</tr>
 
 			<tr>

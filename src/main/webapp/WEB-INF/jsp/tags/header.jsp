@@ -17,10 +17,10 @@
           <a class="nav-link" href="/insertbook">Insert book</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/updatebook">Update book</a>
+          <a class="nav-link" href="/booktoupdate">Update book</a>
         </li>
 		<li class="nav-item">
-          <a class="nav-link" href="/deletebook">Delete book</a>
+          <a class="nav-link" href="/booktodelete">Delete book</a>
         </li>
 	</sec:authorize>
 		<li class="nav-item">

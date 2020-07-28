@@ -16,6 +16,10 @@ public class Member {
     private Integer bookLimit;
     private Double fine;
 
+
+    @OneToOne(mappedBy = "borrower")
+    private BookIssue bookIssue;
+
     public Member() {
     }
 
@@ -25,6 +29,16 @@ public class Member {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+    public BookIssue getBookIssue() {
+        return bookIssue;
+    }
+
+    public void setBookIssue(BookIssue bookIssue) {
+        this.bookIssue = bookIssue;
+//        bookIssue.addMember(this);
     }
 
     public String getName() {
@@ -58,10 +72,4 @@ public class Member {
     public void setFine(Double fine) {
         this.fine = fine;
     }
-    
-    @Override
-	public String toString() {
-		return "BookIssue [id=" + id + ", name=" + name + ", role=" + role + ", fine=" + fine + ", bookLimit=" + bookLimit + "]";
-	}
-
 }

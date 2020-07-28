@@ -22,20 +22,29 @@ public class Book {
     Integer year;
     Boolean available;
 
-	@ManyToMany
-	@JoinTable(name = "book_authors_map", joinColumns = {
-			@JoinColumn(name = "book_id", referencedColumnName = "id") }, inverseJoinColumns = {
-					@JoinColumn(name = "author_id", referencedColumnName = "id") }
+
+    @ManyToMany
+    @JoinTable(
+            name = "book_authors_map",
+            joinColumns = {
+                    @JoinColumn(name = "book_Id", referencedColumnName = "id")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "author_Id", referencedColumnName = "id")}
     )
     Set <Author> bookAuthors = new HashSet <Author>();
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "book_subject_map", joinColumns = {
-			@JoinColumn(name = "book_id", referencedColumnName = "id") }, inverseJoinColumns = {
-					@JoinColumn(name = "subject_id", referencedColumnName = "id") })
+    @ManyToMany
+    @JoinTable(
+            name = "book_subject_map",
+            joinColumns = {
+                    @JoinColumn(name = "book_id", referencedColumnName = "id")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "subject_id", referencedColumnName = "id")}
+    )
+    Set <Subject> bookSubjects = new HashSet <>();
 
-	@Lazy
-	Set <Subject> bookSubjects = new HashSet <>();
+    @OneToOne(mappedBy = "book")
+    BookIssue bookIssue;
 
     public Book() {
     }
@@ -88,13 +97,13 @@ public class Book {
         this.available = available;
     }
 
-	public Set<Subject> getBookSubjects() {
-		return bookSubjects;
-	}
+    public Set <Subject> getBookSubjects() {
+        return bookSubjects;
+    }
 
-	public void setBookSubjects(Set <Subject> bookSubjects) {
-		this.bookSubjects = bookSubjects;
-	}
+    public void setBookSubjects(Set <Subject> bookSubjects) {
+        this.bookSubjects = bookSubjects;
+    }
 
     public Set <Author> getBookAuthors() {
         return bookAuthors;
@@ -103,12 +112,14 @@ public class Book {
     public void setBookAuthors(Set <Author> bookAuthors) {
         this.bookAuthors = bookAuthors;
     }
-//
-//    public BookIssue getBookIssue() {
-//        return bookIssue;
-//    }
-//
-//    public void setBookIssue(BookIssue bookIssue) {
-//        this.bookIssue = bookIssue;
-//    }
+
+
+    public BookIssue getBookIssue() {
+        return bookIssue;
+    }
+
+    public void setBookIssue(BookIssue bookIssue) {
+        this.bookIssue = bookIssue;
+    }
 }
+

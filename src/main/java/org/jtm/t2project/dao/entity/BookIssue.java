@@ -2,6 +2,7 @@ package org.jtm.t2project.dao.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,13 +18,13 @@ public class BookIssue {
     private Date returned;
     private Double fine;
 
-//    @OneToMany(
-//            mappedBy = "Book_issue_id")
-//    private Set <Book> issuedBooks;
+    @OneToOne
+    @JoinColumn(name = "book_id", referencedColumnName = "id")
+    private Book book;
 
-//    @OneToOne(
-//            mappedBy = "Book_issue_id")
-//    private Member borrower;
+    @OneToOne
+    @JoinColumn(name = "member_id", referencedColumnName = "id")
+    private Member borrower;
 
     public BookIssue() {
     }
@@ -68,19 +69,19 @@ public class BookIssue {
         this.fine = fine;
     }
 
-//    public Set <Book> getIssuedBooks() {
-//        return issuedBooks;
-//    }
-//
-//    public void setIssuedBooks(Set <Book> issuedBooks) {
-//        this.issuedBooks = issuedBooks;
-//    }
+    public Book getBook() {
+        return book;
+    }
 
-//    public Member getBorrower() {
-//        return borrower;
-//    }
-//
-//    public void setBorrower(Member borrower) {
-//        this.borrower = borrower;
-//    }
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public Member getBorrower() {
+        return borrower;
+    }
+
+    public void setBorrower(Member borrower) {
+        this.borrower = borrower;
+    }
 }

@@ -38,7 +38,7 @@ public class BookController {
         Book book = new Book();
         model.addAttribute("book", book);
         model.addAttribute("authorsList", bookManager.findAuthors());
-
+        model.addAttribute("subjectList", bookManager.findSubjects());
         return "insertbook";
     }
 
@@ -47,14 +47,15 @@ public class BookController {
     public String insertBook(Book book, ModelMap model) {
         try {
             book = bookManager.insertBook(book);
-            model.addAttribute("message", "Book - "
-                    + book.getTitle() + ". Was added to database, id: " + book.getId());
+//            model.addAttribute("message", "Book - "
+//                    + book.getTitle() + ". Was added to database, id: " + book.getId());
             model.addAttribute("authorsList", bookManager.findAuthors());
+            model.addAttribute("subjectList", bookManager.findSubjects());
         } catch (Exception exception) {
             model.addAttribute("errorMessage", "Error occured");
             return "insertbook";
         }
-        return "insertbook";
+        return "redirect:/findbook";
     }
 
     @RolesAllowed("ADMIN")
@@ -63,6 +64,8 @@ public class BookController {
         Book book = bookManager.findBookById(id).orElseThrow(NullPointerException::new);
         model.addAttribute("book", book);
         model.addAttribute("authorsList", book.getBookAuthors());
+        model.addAttribute("authorsList", bookManager.findAuthors());
+        model.addAttribute("subjectList", bookManager.findSubjects());
 
         return "updatebook";
     }
@@ -72,13 +75,15 @@ public class BookController {
     public String updateBook(Book book, ModelMap model) {
         try {
             book = bookManager.insertBook(book);
-            model.addAttribute("message", "Book id: "
-                    + book.getId() + " was updated in database.");
+//            model.addAttribute("message", "Book id: "
+//                    + book.getId() + " was updated in database.");
+            model.addAttribute("authorsList", bookManager.findAuthors());
+            model.addAttribute("subjectList", bookManager.findSubjects());
         } catch (Exception exception) {
             model.addAttribute("errorMessage", "Error occured");
             return "updatebook";
         }
-        return "updatebook";
+        return "redirect:/findbook";
     }
 
     @RolesAllowed("ADMIN")
@@ -98,67 +103,95 @@ public class BookController {
             model.addAttribute("errorMessage", "Error occured");
             return "deletebook";
         }
-        return "redirect:/";
+        return "redirect:/findbook";
     }
 
-	@GetMapping("/findbook")
-	public String findBook(ModelMap model) {
-		Book book = new Book();
-		try {
-			List<Book> books = bookManager.findAll(book);
-			model.addAttribute("books", books);
-		} catch (Exception exception) {
-			model.addAttribute("errorMessage", "Error occur");
-			return "error";
-		}
-		return "findbook";
-	}
+    @GetMapping("/findbook")
+    public String findBook(ModelMap model) {
+        Book book = new Book();
+        try {
+            List <Book> books = bookManager.findAll(book);
+            model.addAttribute("books", books);
+        } catch (Exception exception) {
+            model.addAttribute("errorMessage", "Error occur");
+            return "error";
+        }
+        return "findbook";
+    }
 
-	@RequestMapping(value = "/findbook", params = "subject")
-	public String findBookBySubject(String subject, ModelMap model) {
-		Subject subj = new Subject();
-		subj.setName(subject);
-		try {
-			List<Book> booksSubjects = bookManager.findBySubjectsNames(subject);
-			model.addAttribute("books", booksSubjects);
-		} catch (Exception exception) {
-			model.addAttribute("errorMessage", "Error occur");
-			return "error";
-		}
-		return "findbook";
-	}
+    @RequestMapping(value = "/findbook", params = "subject")
+    public String findBookBySubject(String subject, ModelMap model) {
+        Subject subj = new Subject();
+        subj.setName(subject);
+        try {
+            List <Book> booksSubjects = bookManager.findBySubjectsNames(subject);
+            model.addAttribute("books", booksSubjects);
+        } catch (Exception exception) {
+            model.addAttribute("errorMessage", "Error occur");
+            return "error";
+        }
+        return "findbook";
+    }
 
-	@RequestMapping(value = "/findbook", params = "author")
-	public String findBookByAuthor(String author, ModelMap model) {
-		Author auth = new Author();
-		auth.setName(author);
-		try {
-			List<Book> books = bookManager.findByAuthors(author);
-			model.addAttribute("books", books);
-		} catch (Exception exception) {
-			model.addAttribute("errorMessage", "Error occur");
-			return "error";
-		}
-		return "findbook";
-	}
+    @RequestMapping(value = "/findbook", params = "author")
+    public String findBookByAuthor(String author, ModelMap model) {
+        Author auth = new Author();
+        auth.setName(author);
+        try {
+            List <Book> books = bookManager.findByAuthors(author);
+            model.addAttribute("books", books);
+        } catch (Exception exception) {
+            model.addAttribute("errorMessage", "Error occur");
+            return "error";
+        }
+        return "findbook";
+    }
 
-	@RequestMapping(value = "/findbook")
-	public String findBooks(Long isbn, String title, String publisher, Integer year, Boolean available, String name,
-			ModelMap model) {
-		Book book = new Book();
-		book.setIsbn(isbn);
-		book.setTitle(title);
-		book.setPublisher(publisher);
-		book.setYear(year);
-		book.setAvailable(available);
-		try {
-			List<Book> books = bookManager.findBooks(book);
-			model.addAttribute("books", books);
-		} catch (Exception exception) {
-			model.addAttribute("errorMessage", "Error occur");
-			return "error";
-		}
-		return "findbook";
-	}
+    @RequestMapping(value = "/findbook")
+    public String findBooks(Long isbn, String title, String publisher, Integer year, Boolean available, String name,
+                            ModelMap model) {
+        Book book = new Book();
+        book.setIsbn(isbn);
+        book.setTitle(title);
+        book.setPublisher(publisher);
+        book.setYear(year);
+        book.setAvailable(available);
+        try {
+            List <Book> books = bookManager.findBooks(book);
+            model.addAttribute("books", books);
+        } catch (Exception exception) {
+            model.addAttribute("errorMessage", "Error occur");
+            return "error";
+        }
+        return "findbook";
+    }
+
+    @RolesAllowed("ADMIN")
+    @GetMapping("/booktoupdate")
+    public String bookToUpd(ModelMap model) {
+        Book book = new Book();
+        try {
+            List <Book> books = bookManager.findAll(book);
+            model.addAttribute("books", books);
+        } catch (Exception exception) {
+            model.addAttribute("errorMessage", "Error occur");
+            return "error";
+        }
+        return "booktoupdate";
+    }
+
+    @RolesAllowed("ADMIN")
+    @GetMapping("/booktodelete")
+    public String bookToDel(ModelMap model) {
+        Book book = new Book();
+        try {
+            List <Book> books = bookManager.findAll(book);
+            model.addAttribute("books", books);
+        } catch (Exception exception) {
+            model.addAttribute("errorMessage", "Error occur");
+            return "error";
+        }
+        return "booktodelete";
+    }
 
 }

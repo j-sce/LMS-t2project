@@ -12,15 +12,32 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String name;
-    
 
-	public Subject(String name) {
-        this.name = name;
+    @ManyToMany(mappedBy = "bookSubjects",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List <Book> books;
+
+//    public Subject(String name) {
+//        this.name = name;
+//    }
+
+    public List <Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List <Book> books) {
+        this.books = books;
     }
 
     public Subject() {
         super();
     }
+
+    public Subject(String id) {
+        super();
+        this.id = new Long(id);
+    }
+
 
     public String getName() {
         return name;

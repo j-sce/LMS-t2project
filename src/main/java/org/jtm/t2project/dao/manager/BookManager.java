@@ -7,6 +7,7 @@ import org.jtm.t2project.dao.entity.Book;
 import org.jtm.t2project.dao.entity.Subject;
 import org.jtm.t2project.repo.AuthorRepository;
 import org.jtm.t2project.repo.BookRepository;
+import org.jtm.t2project.repo.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,9 @@ public class BookManager {
     AuthorRepository authorRepository;
 
     @Autowired
+    SubjectRepository subjectRepository;
+
+    @Autowired
     BookRepository bookRepository;
 
     public Book insertBook(Book book) {
@@ -29,37 +33,37 @@ public class BookManager {
     }
 
 
-    public List<Book> findAll(Book book) {
-    	List<Book> results = new ArrayList<>();
-    	bookRepository.findAll().forEach(results::add);
-    	return results;
+    public List <Book> findAll(Book book) {
+        List <Book> results = new ArrayList <>();
+        bookRepository.findAll().forEach(results::add);
+        return results;
     }
 
 
-    public List<Book> findBooks(Book book){
-    	List<Book> results = new ArrayList<>();
-    	bookRepository.findByName(book.getTitle()).forEach(results::add);
-    	bookRepository.findByIsbn(book.getIsbn()).forEach(results::add);
-    	bookRepository.findByPublisher(book.getPublisher()).forEach(results::add);
-    	bookRepository.findByYear(book.getYear()).forEach(results::add);
-    	bookRepository.findAvailable(book.getAvailable()).forEach(results::add);
-		return results;
+    public List <Book> findBooks(Book book) {
+        List <Book> results = new ArrayList <>();
+        bookRepository.findByName(book.getTitle()).forEach(results::add);
+        bookRepository.findByIsbn(book.getIsbn()).forEach(results::add);
+        bookRepository.findByPublisher(book.getPublisher()).forEach(results::add);
+        bookRepository.findByYear(book.getYear()).forEach(results::add);
+        bookRepository.findAvailable(book.getAvailable()).forEach(results::add);
+        return results;
 
     }
 
-    public List<Book> findBySubjects(List<Long> ids){
+    public List <Book> findBySubjects(List <Long> ids) {
 
-		return bookRepository.findbySubject(ids);
+        return bookRepository.findbySubject(ids);
     }
 
-    public List<Book> findBySubjectsNames(String subject){
+    public List <Book> findBySubjectsNames(String subject) {
 
-		return bookRepository.findbySubjectNames(subject);
+        return bookRepository.findbySubjectNames(subject);
     }
 
-    public List<Book> findByAuthors(String author){
+    public List <Book> findByAuthors(String author) {
 
-		return bookRepository.findbyAuthorsNames(author);
+        return bookRepository.findbyAuthorsNames(author);
     }
 
     public Optional <Book> findBookById(Long id) {
@@ -79,4 +83,11 @@ public class BookManager {
         authorRepository.findAll().forEach(results::add);
         return results;
     }
+
+    public Set <Subject> findSubjects() {
+        Set <Subject> results = new HashSet <>();
+        subjectRepository.findAll().forEach(results::add);
+        return results;
+    }
+
 }
