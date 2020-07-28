@@ -1,7 +1,6 @@
 package org.jtm.t2project.dao.entity;
 
 import javax.persistence.*;
-
 import java.util.List;
 
 @Entity

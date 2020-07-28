@@ -1,7 +1,5 @@
 package org.jtm.t2project.dao.manager;
 
-import java.util.*;
-
 import org.jtm.t2project.dao.entity.Author;
 import org.jtm.t2project.dao.entity.Book;
 import org.jtm.t2project.dao.entity.Subject;
@@ -13,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.*;
 
 @Service
 @Transactional

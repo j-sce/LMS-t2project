@@ -1,7 +1,5 @@
 package org.jtm.t2project.dao.entity;
 
-import org.jtm.t2project.dao.entity.BookIssue;
-
 import javax.persistence.*;
 
 @Entity

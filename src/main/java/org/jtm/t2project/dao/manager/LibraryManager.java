@@ -1,8 +1,4 @@
-
 package org.jtm.t2project.dao.manager;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
 
 public class LibraryManager {
 
