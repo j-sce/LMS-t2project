@@ -17,9 +17,8 @@ public class Member {
     private Integer bookLimit;
     private Double fine;
 
-//    @OneToOne
-//    @JoinColumn(name = "Book_issue_id")
-//    private BookIssue bookIssue;
+    @OneToOne(mappedBy = "borrower")
+    private BookIssue bookIssue;
 
     public Member() {
     }
@@ -32,14 +31,14 @@ public class Member {
         this.id = id;
     }
 
-//    public BookIssue getBookIssue() {
-//        return bookIssue;
-//    }
+    public BookIssue getBookIssue() {
+        return bookIssue;
+    }
 
-//    public void setBookIssue(BookIssue bookIssue) {
-//        this.bookIssue = bookIssue;
-////        bookIssue.addMember(this);
-//    }
+    public void setBookIssue(BookIssue bookIssue) {
+        this.bookIssue = bookIssue;
+//        bookIssue.addMember(this);
+    }
 
     public String getName() {
         return name;

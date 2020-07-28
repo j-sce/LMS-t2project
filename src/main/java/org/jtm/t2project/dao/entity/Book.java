@@ -42,6 +42,9 @@ public class Book {
     )
     Set <Subject> bookSubjects = new HashSet <>();
 
+    @OneToOne(mappedBy = "book")
+    BookIssue bookIssue;
+
     public Book() {
     }
 
@@ -108,12 +111,12 @@ public class Book {
     public void setBookAuthors(Set <Author> bookAuthors) {
         this.bookAuthors = bookAuthors;
     }
-//
-//    public BookIssue getBookIssue() {
-//        return bookIssue;
-//    }
-//
-//    public void setBookIssue(BookIssue bookIssue) {
-//        this.bookIssue = bookIssue;
-//    }
+
+    public BookIssue getBookIssue() {
+        return bookIssue;
+    }
+
+    public void setBookIssue(BookIssue bookIssue) {
+        this.bookIssue = bookIssue;
+    }
 }
