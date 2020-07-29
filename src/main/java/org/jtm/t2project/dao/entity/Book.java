@@ -38,7 +38,7 @@ public class Book {
     )
     Set <Subject> bookSubjects = new HashSet <>();
 
-    @OneToOne(mappedBy = "book")
+    @OneToOne(mappedBy = "bookToIssue")
     BookIssue bookIssue;
 
     public Book() {

@@ -1,11 +1,7 @@
 package org.jtm.t2project.dao.manager;
 
-import org.jtm.t2project.dao.entity.Author;
-import org.jtm.t2project.dao.entity.Book;
-import org.jtm.t2project.dao.entity.Subject;
-import org.jtm.t2project.repo.AuthorRepository;
-import org.jtm.t2project.repo.BookRepository;
-import org.jtm.t2project.repo.SubjectRepository;
+import org.jtm.t2project.dao.entity.*;
+import org.jtm.t2project.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +22,12 @@ public class BookManager {
 
     @Autowired
     BookRepository bookRepository;
+
+    @Autowired
+    MemberRepository memberRepository;
+
+    @Autowired
+    IssueBookRepository issueBookRepository;
 
     public Book insertBook(Book book) {
         return bookRepository.save(book);
@@ -87,6 +89,22 @@ public class BookManager {
         Set <Subject> results = new HashSet <>();
         subjectRepository.findAll().forEach(results::add);
         return results;
+    }
+
+    public Set <Book> findAllBooks() {
+        Set <Book> results = new HashSet <>();
+        bookRepository.findAll().forEach(results::add);
+        return results;
+    }
+
+    public Set <Member> findMembers() {
+        Set <Member> results = new HashSet <>();
+        memberRepository.findAll().forEach(results::add);
+        return results;
+    }
+
+    public BookIssue newBookIssue(BookIssue bookIssue){
+        return issueBookRepository.save(bookIssue);
     }
 
 }

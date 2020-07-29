@@ -1,8 +1,6 @@
 package org.jtm.t2project.dao.manager;
 
-import org.jtm.t2project.dao.entity.Author;
-import org.jtm.t2project.dao.entity.Book;
-import org.jtm.t2project.dao.entity.Subject;
+import org.jtm.t2project.dao.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,7 +62,7 @@ public class BookController {
     public String getUpdatableBook(@PathVariable("id") Long id, Model model) {
         Book book = bookManager.findBookById(id).orElseThrow(NullPointerException::new);
         model.addAttribute("book", book);
-        model.addAttribute("authorsList", book.getBookAuthors());
+//        model.addAttribute("authorsList", book.getBookAuthors());
         model.addAttribute("authorsList", bookManager.findAuthors());
         model.addAttribute("subjectList", bookManager.findSubjects());
 
@@ -195,6 +193,47 @@ public class BookController {
             return "error";
         }
         return "booktodelete";
+    }
+
+//    @RolesAllowed("ADMIN")
+    @GetMapping("/bookissue")
+    public String arrangeBookIsuue(ModelMap model) {
+//        Book book = new Book();
+//        Member member = new Member();
+        BookIssue bookIssue = new BookIssue();
+        model.addAttribute("bookList", bookManager.findAllBooks());
+        model.addAttribute("memberList", bookManager.findMembers());
+        model.addAttribute("bookIssue", bookIssue);
+
+        return "bookissue";
+    }
+
+//    @RolesAllowed("ADMIN")
+    @PostMapping("/bookissue")
+    public String updateBook(
+            Book book, Member member,
+            BookIssue bookIssue, ModelMap model) {
+        try {
+            if(member.getBookLimit()<1){
+                return "error";
+            }
+            if(!book.getAvailable()){
+                return "error";
+            }
+            member.setBookLimit(member.getBookLimit()-1);
+            book.setAvailable(false);
+            bookIssue = bookManager.newBookIssue(bookIssue);
+            model.addAttribute("bookList", bookManager.findAllBooks());
+            model.addAttribute("memberList", bookManager.findMembers());
+            model.addAttribute("bookIssue", bookIssue);
+        } catch (Exception exception) {
+            model.addAttribute("errorMessage", "Error occured!");
+            model.addAttribute("bookList", bookManager.findAllBooks());
+            model.addAttribute("memberList", bookManager.findMembers());
+            model.addAttribute("bookIssue", bookIssue);
+            return "bookissue";
+        }
+        return "bookissue";
     }
 
 

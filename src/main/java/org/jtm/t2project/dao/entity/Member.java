@@ -13,6 +13,8 @@ public class Member {
     private String name;
     private String role;
     private Integer bookLimit;
+
+    @Column(name = "non_paid_fine")
     private Double fine;
 
     @OneToOne(mappedBy = "borrower")
