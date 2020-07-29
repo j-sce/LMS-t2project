@@ -2,8 +2,6 @@ package org.jtm.t2project.dao.entity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "Book_issue")

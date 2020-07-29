@@ -36,6 +36,7 @@
   </tbody>
 </table>
 </div>
-  <%@ include file="tags/footer.jsp"%>
+
 </body>
+  <%@ include file="tags/footer.jsp"%>
 </html>

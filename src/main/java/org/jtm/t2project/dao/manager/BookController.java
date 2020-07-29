@@ -1,9 +1,8 @@
 package org.jtm.t2project.dao.manager;
 
+
 import java.util.List;
-
 import javax.annotation.security.RolesAllowed;
-
 import org.jtm.t2project.dao.entity.Author;
 import org.jtm.t2project.dao.entity.Book;
 import org.jtm.t2project.dao.entity.Subject;
@@ -15,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+
 
 @Controller
 public class BookController {
@@ -52,7 +53,9 @@ public class BookController {
             model.addAttribute("authorsList", bookManager.findAuthors());
             model.addAttribute("subjectList", bookManager.findSubjects());
         } catch (Exception exception) {
-            model.addAttribute("errorMessage", "Error occured");
+            model.addAttribute("errorMessage", "Error occured, please fill requested fields!");
+            model.addAttribute("authorsList", bookManager.findAuthors());
+            model.addAttribute("subjectList", bookManager.findSubjects());
             return "insertbook";
         }
         return "redirect:/findbook";
@@ -80,7 +83,9 @@ public class BookController {
             model.addAttribute("authorsList", bookManager.findAuthors());
             model.addAttribute("subjectList", bookManager.findSubjects());
         } catch (Exception exception) {
-            model.addAttribute("errorMessage", "Error occured");
+            model.addAttribute("errorMessage", "Error occured!");
+            model.addAttribute("authorsList", bookManager.findAuthors());
+            model.addAttribute("subjectList", bookManager.findSubjects());
             return "updatebook";
         }
         return "redirect:/findbook";
@@ -100,7 +105,7 @@ public class BookController {
         try {
             bookManager.deleteBook(book);
         } catch (Exception exception) {
-            model.addAttribute("errorMessage", "Error occured");
+            model.addAttribute("errorMessage", "Error occured!");
             return "deletebook";
         }
         return "redirect:/findbook";
