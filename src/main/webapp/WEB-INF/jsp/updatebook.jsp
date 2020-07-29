@@ -59,6 +59,6 @@
 		</table>
        </div>
 	</form:form>
-  <%@ include file="tags/footer.jsp"%>
 </body>
+  <%@ include file="tags/footer.jsp"%>
 </html>

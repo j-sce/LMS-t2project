@@ -110,4 +110,5 @@ label {
 
 	</table>
 </body>
+    <%@ include file="tags/footer.jsp"%>
 </html>

@@ -51,7 +51,9 @@ public class BookController {
             model.addAttribute("authorsList", bookManager.findAuthors());
             model.addAttribute("subjectList", bookManager.findSubjects());
         } catch (Exception exception) {
-            model.addAttribute("errorMessage", "Error occured");
+            model.addAttribute("errorMessage", "Error occured, please fill requested fields!");
+            model.addAttribute("authorsList", bookManager.findAuthors());
+            model.addAttribute("subjectList", bookManager.findSubjects());
             return "insertbook";
         }
         return "redirect:/findbook";
@@ -79,7 +81,9 @@ public class BookController {
             model.addAttribute("authorsList", bookManager.findAuthors());
             model.addAttribute("subjectList", bookManager.findSubjects());
         } catch (Exception exception) {
-            model.addAttribute("errorMessage", "Error occured");
+            model.addAttribute("errorMessage", "Error occured!");
+            model.addAttribute("authorsList", bookManager.findAuthors());
+            model.addAttribute("subjectList", bookManager.findSubjects());
             return "updatebook";
         }
         return "redirect:/findbook";
@@ -99,7 +103,7 @@ public class BookController {
         try {
             bookManager.deleteBook(book);
         } catch (Exception exception) {
-            model.addAttribute("errorMessage", "Error occured");
+            model.addAttribute("errorMessage", "Error occured!");
             return "deletebook";
         }
         return "redirect:/findbook";
