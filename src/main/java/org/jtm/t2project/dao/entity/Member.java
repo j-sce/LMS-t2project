@@ -23,6 +23,11 @@ public class Member {
     public Member() {
     }
 
+    public Member(String id) {
+        super();
+        this.id = new Long(id);
+    }
+
     public Long getId() {
         return id;
     }

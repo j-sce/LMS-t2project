@@ -16,10 +16,6 @@ public class Subject {
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List <Book> books;
 
-//    public Subject(String name) {
-//        this.name = name;
-//    }
-
     public List <Book> getBooks() {
         return books;
     }
@@ -36,7 +32,6 @@ public class Subject {
         super();
         this.id = new Long(id);
     }
-
 
     public String getName() {
         return name;

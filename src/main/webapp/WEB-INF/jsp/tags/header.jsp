@@ -12,6 +12,9 @@
         <li class="nav-item">
           <a class="nav-link active" href="/">LMS</a>
         </li>
+		<li class="nav-item">
+          <a class="nav-link" href="/findbook">Find book</a>
+        </li>
 	<sec:authorize access="hasRole('ADMIN')">
         <li class="nav-item">
           <a class="nav-link" href="/insertbook">Insert book</a>
@@ -22,10 +25,10 @@
 		<li class="nav-item">
           <a class="nav-link" href="/booktodelete">Delete book</a>
         </li>
-	</sec:authorize>
 		<li class="nav-item">
-          <a class="nav-link" href="/findbook">Find book</a>
+          <a class="nav-link" href="/bookissue">Issue book</a>
         </li>
+	</sec:authorize>
       </ul>
       <ul class="navbar-nav ml-md-auto">
         <li class="nav-item">

@@ -44,6 +44,11 @@ public class Book {
     public Book() {
     }
 
+    public Book(String id) {
+        super();
+        this.id = new Long(id);
+    }
+
     public Long getId() {
         return id;
     }

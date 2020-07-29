@@ -340,7 +340,7 @@ CREATE TABLE `Book_issue`
    `member_id` bigint unsigned NOT NULL,
    `date_of_issue` date NOT NULL,
    `term_of_return` date NOT NULL,
-   `actual_return_date` date NOT NULL,
+   `actual_return_date` date,
    `fine_amount` int,
    PRIMARY KEY (`id`),
    CONSTRAINT `FK_Book_Issue_Map_1` FOREIGN KEY (`book_id`) REFERENCES `Books` (`id`),

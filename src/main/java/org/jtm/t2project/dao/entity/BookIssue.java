@@ -1,8 +1,8 @@
 package org.jtm.t2project.dao.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -13,15 +13,15 @@ public class BookIssue {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date_of_issue")
     private Date issue;
 
-//    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "term_of_return")
     private Date toReturn;
 
-//    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "actual_return_date")
     private Date returned;
 
@@ -95,15 +95,4 @@ public class BookIssue {
         this.borrower = borrower;
     }
 
-//    @PrePersist
-//    protected void onPrePersist() {
-//        // TODO set date field to current system date
-//        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//        issue = new Date();
-//        formatter.format(issue);
-//        toReturn = new Date();
-//        formatter.format(toReturn);
-//        returned = new Date();
-//        formatter.format(returned);
-//    }
 }

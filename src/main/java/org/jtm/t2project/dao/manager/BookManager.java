@@ -75,10 +75,6 @@ public class BookManager {
         bookRepository.delete(book);
     }
 
-//    public List <Book> findByAuthor(List <Long> authorIds){
-//        return bookRepository.findByAuthor(authorIds);
-//    }
-
     public Set <Author> findAuthors() {
         Set <Author> results = new HashSet <>();
         authorRepository.findAll().forEach(results::add);

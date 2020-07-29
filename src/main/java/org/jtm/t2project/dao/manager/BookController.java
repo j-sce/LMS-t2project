@@ -195,7 +195,7 @@ public class BookController {
         return "booktodelete";
     }
 
-//    @RolesAllowed("ADMIN")
+    @RolesAllowed("ADMIN")
     @GetMapping("/bookissue")
     public String arrangeBookIsuue(ModelMap model) {
 //        Book book = new Book();
@@ -208,20 +208,20 @@ public class BookController {
         return "bookissue";
     }
 
-//    @RolesAllowed("ADMIN")
+    @RolesAllowed("ADMIN")
     @PostMapping("/bookissue")
-    public String updateBook(
-            Book book, Member member,
+    public String issueBook(
+//            Book book, Member member,
             BookIssue bookIssue, ModelMap model) {
         try {
-            if(member.getBookLimit()<1){
-                return "error";
-            }
-            if(!book.getAvailable()){
-                return "error";
-            }
-            member.setBookLimit(member.getBookLimit()-1);
-            book.setAvailable(false);
+//            if(member.getBookLimit()<1){
+//                return "error";
+//            }
+//            if(!book.getAvailable()){
+//                return "error";
+//            }
+//            member.setBookLimit(member.getBookLimit()-1);
+//            book.setAvailable(false);
             bookIssue = bookManager.newBookIssue(bookIssue);
             model.addAttribute("bookList", bookManager.findAllBooks());
             model.addAttribute("memberList", bookManager.findMembers());
