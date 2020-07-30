@@ -145,6 +145,8 @@ public class BookController {
         try {
             List <Book> books = bookManager.findByAuthors(author);
             model.addAttribute("books", books);
+            model.addAttribute("authorsList", bookManager.findAuthors());
+            model.addAttribute("subjectList", bookManager.findSubjects());
         } catch (Exception exception) {
             model.addAttribute("errorMessage", "Error occur");
             return "error";
